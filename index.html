@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Un</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="menuToggle">Menu</div>
+    <ul class="active">
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Home">Home</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-file-text-o" aria-hidden="true"></i>
+              <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Article">Article</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-id-card-o" aria-hidden="true"></i>
+              <i class="fa fa-id-card-o" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Blog">Blog</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Contributions">Contributions</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Awards">Awards</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-users " aria-hidden="true"></i>
+              <i class="fa fa-users " aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Peoples">Peoples</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-user " aria-hidden="true"></i>
+              <i class="fa fa-user " aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Profile">Profile</span></div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <div class="icon">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="name"><span data-text="Contact">Contact</span></div>
+        </a>
+      </li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.menuToggle').click(function(){
+          $('ul').toggleClass('.active')
+        })
+      })
+    </script>
+  </body>
+</html>
