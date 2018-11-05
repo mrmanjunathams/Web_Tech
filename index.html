@@ -2,93 +2,122 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Un</title>
+    <title>Expo.</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Ubuntu" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script src="js/app.js"></script>
   </head>
-  <body>
-    <div class="menuToggle">Menu</div>
-    <ul class="active">
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-home" aria-hidden="true"></i>
-              <i class="fa fa-home" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Home">Home</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-file-text-o" aria-hidden="true"></i>
-              <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Article">Article</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-id-card-o" aria-hidden="true"></i>
-              <i class="fa fa-id-card-o" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Blog">Blog</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-cogs" aria-hidden="true"></i>
-              <i class="fa fa-cogs" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Contributions">Contributions</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Awards">Awards</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-users " aria-hidden="true"></i>
-              <i class="fa fa-users " aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Peoples">Peoples</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-user " aria-hidden="true"></i>
-              <i class="fa fa-user " aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Profile">Profile</span></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-            <div class="icon">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </div>
-            <div class="name"><span data-text="Contact">Contact</span></div>
-        </a>
-      </li>
-    </ul>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('.menuToggle').click(function(){
-          $('ul').toggleClass('.active')
-        })
-      })
-    </script>
+  <body ng-app="myApp" style="font-family: 'Ubuntu', sans-serif;">
+    <nav class="main">
+   <div class="nav-wrapper">
+     <a href="#!" class="brand-logo" style="color:black">&nbsp&nbsp&nbsp EXPO.</a>
+     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+     <ul class="right hide-on-med-and-down">
+       <li><a href="#!">HOME</a></li>
+       <li><a href="#!blog">BLOG</a></li>
+       <li><a href="#!">CATEGORY</a></li>
+       <li><a href="#!rewards">REWARDS</a></li>
+       <li><a href="#!gallery">GALLERY</a></li>
+       <li><a href="#!aboutme">ABOUT US</a></li>
+       <li><a href="#!myacc">MY ACCOUNT</a></li>
+     </ul>
+   </div>
+ </nav>
+
+ <ul class="sidenav" id="mobile-demo">
+   <li><a href="#!">HOME</a></li>
+   <li><a href="#!blog">BLOG</a></li>
+   <li><a href="#!lifestyle">LIFESTYLE</a></li>
+   <li><a href="#!travel">TRAVELS</a></li>
+   <li><a href="#!gallery">GALLERY</a></li>
+   <li><a href="#!aboutme">ABOUT US</a></li>
+   <li><a href="#!myacc">MY ACCOUNT</a></li>
+ </ul>
+
+ <div class="ng-view"></div>
+
+    <div class="footer">
+      <h5><b>TELEGRAM</b></h5>
+      <div class="row">
+        <div class="col s2">
+          <img src="images/img7.jpg" alt="img" width="222px" height="195px">
+        </div>
+        <div class="col s2">
+          <img src="images/img2.jpg" alt="img" width="222px" height="195px">
+        </div>
+        <div class="col s2">
+          <img src="images/img4.jpg" alt="img" width="222px" height="195px">
+        </div>
+        <div class="col s2">
+          <img src="images/img5.jpg" alt="img" width="222px" height="195px">
+        </div>
+        <div class="col s2">
+          <img src="images/img6.jpg" alt="img" width="222px" height="195px">
+        </div>
+        <div class="col s2">
+          <img src="images/img3.jpg" alt="img" width="222px" height="195px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <h6><b>NAVIGATIONS</b></h6>
+          <div class="nav"><br>
+            <a href="#"><i class="material-icons">check</i>HOME</a><br>
+            <a href="#"><i class="material-icons">check</i>ABOUT ME</a><br>
+            <a href="#"><i class="material-icons">check</i>BLOG</a><br>
+            <a href="#"><i class="material-icons">check</i>LIFESTYLE</a><br>
+            <a href="#"><i class="material-icons">check</i>GALLERY</a><br>
+            <a href="#"><i class="material-icons">check</i>MY ACCOUNT</a>
+          </div>
+        </div>
+        <div class="col s4">
+          <h6><b>RECENT POST</b></h6>
+          <p style="color:gray; font-family: sans-serif; font-size:13px;">22-OCT-2018</p>
+          <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">The Most Popular Leg Workout for Men</p>
+          <p style="color:gray; font-family: sans-serif; font-size:13px;">30-OCT-2018</p>
+          <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Popular Lifestyle with Fashion & Modeling</p>
+          <p style="color:gray; font-family: sans-serif; font-size:13px;">31-OCT-2018</p>
+          <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Video Post Travel with my Friends</p>
+          <p style="color:gray; font-family: sans-serif; font-size:13px;">01-NOV-2018</p>
+          <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Popular Lifestyle with Fashion & Modeling</p>
+        </div>
+        <div class="col s4">
+          <h6><b>TAGS</b></h6>
+          <div class="tags">
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Modeling</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Fashion</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Travel</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Vacation</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>See</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Ocean</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Office</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Home</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Nature</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Art</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Animals</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Women</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>News</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Workout</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">local_offer</i>Exercise</a>
+          </div>
+        </div>
+      </div>
+      <div class="row"><br><br><br>
+        <div class="col s12">
+          <p style="text-align: center; font-size:12px;">Copyright © 2018 All rights reserved.Proudly buit by <b>Manjunatha M S.</b></p>
+        </div><br><br>
+      </div>
+    </div>
   </body>
 </html>

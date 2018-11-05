@@ -1,0 +1,82 @@
+body{
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+}
+section{
+  width: 100%;
+  height: 100vh;
+  background: url(../images/img3.jpg);
+  background-size: cover;
+}
+.fcont{
+  position: absolute;
+  top:0;
+  left: 50%;
+  transform: translate(-50%,50%);
+  width: 700px;
+  height: 350px;
+  background: rgba(103, 58, 183, 0.7);
+}
+.fcont .form-cont,
+.fcont .form
+{
+  position: relative;
+  width: 50%;
+  height: 350px;
+  float: left;
+  box-sizing: border-box;
+}
+.fcont .form-cont{
+  padding: 40px 50px;
+  color: #fff;
+}
+.fcont .form{
+  background: #fff;
+  height: 380px;
+  top: -15px;
+  box-shadow: -20px 0 15px rgba(0,0,0,0.2);
+  padding: 30px;
+}
+.fcont .form-cont a{
+  display: inline-block;
+  padding: 10px 20px;
+  color:#fff;
+  background: #ff0057;
+  border-radius: 25px;
+  text-decoration: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.fcont .form h1{
+  color: #262626;
+}
+.fcont .form input{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  font-size: 15px;
+}
+.fcont .form input:valid,
+.fcont .form input:hover{
+  border: 2px solid #673ab7;
+}
+.fcont .form input[type="submit"] {
+  color: #fff;
+  background: #673ab7;
+  font-size: 16px;
+  transition: 0.5s;
+}
+.fcont .form input[type="submit"]:hover{
+  background: #ff0057;
+  border: 2px solid #ff0057;
+}
+.fcont .form a{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
