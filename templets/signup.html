@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="myApp">
+    <section>
+      <div class="fcont">
+        <div class="form-cont">
+          <h2>Sign Up to know.</h2>
+          <p>more about you.</p>
+          <a href="#">Read More</a>
+        </div>
+        <div class="form">
+          <h1>Sign Up</h1>
+          <form method="post" ng-controller="SignupController" name="signup">
+            <input type="text" name="user" placeholder="Username" ng-model="user">
+            <input type="email" name="email" placeholder="Email" ng-model="email">
+            <input type="password" name="pass" placeholder="Password" ng-model="pass">
+            <input type="submit" name="signin" value="SignUp" ng-click="submit()">
+          </form>
+          <a href="#">Forget Password</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
