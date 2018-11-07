@@ -2,7 +2,11 @@ body{
   margin: 0;
   padding:0;
 }
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600');
 
+body{
+  font-family: 'Josefin Sans', sans-serif;
+}
 nav .nav-wrapper{
   background: #fff;
   font-size: 14px;
@@ -37,8 +41,8 @@ section{
 }
 .fcont .form{
   background: #fff;
-  height: 380px;
-  top: -15px;
+  height: 385px;
+  top: -20px;
   box-shadow: -20px 0 15px rgba(0,0,0,0.2);
   padding: 30px;
 }
@@ -53,7 +57,7 @@ section{
 }
 .fcont .form h1{
   color: #262626;
-  font-size: 12px;
+  font-size: 22px;
 }
 .fcont .form input{
   display: block;

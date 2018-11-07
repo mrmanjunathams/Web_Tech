@@ -17,6 +17,10 @@ app.config(function($routeProvider){
       templateUrl:"templets/myacc.html"
     }).when("/rewards",{
       templateUrl:"templets/timeline.html"
+    }).when("/pro",{
+      templateUrl:"templets/card.html"
+    }).when("/cate",{
+      templateUrl:"templets/cate.html"
     });
 
 });
