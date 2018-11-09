@@ -2,7 +2,7 @@ var app =angular.module("myApp",["ngRoute"]);
 
 app.config(function($routeProvider){
     $routeProvider.when("/",{
-      templateUrl:"templets/home.html"
+      templateUrl:"templets/home2.html"
     }).when("/blog",{
         templateUrl:"templets/blog.html"
     }).when("/aboutme",{

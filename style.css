@@ -2,6 +2,15 @@ body{
   margin: 0;
   padding:0;
 }
+#r .col .cat a{
+  margin-left: 38%;
+  color: gray;
+  font-size: 18px;
+  line-height: 0px;
+}
+#r .col .cat a:hover{
+  color:#17bebb;
+}
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600');
 
 body{
@@ -311,4 +320,53 @@ right: 0;
 }
 .main-timeline .timeline:nth-child(3n).fa{
   box-shadow: 0 0 0 2px #17bebb;
+}
+#r .col .aboutme a{
+  background-color: #fff;
+  font-size: 18px;
+  border:; 2px solid #17bebb;
+  color: #17bebb;
+}
+#r .col .aboutme i{
+  color: #17bebb;
+}
+#r .col .aboutme a:hover{
+  font-size: 22px;
+}
+.parallax.s1{
+   background-image: url('para/img25.jpg');
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax.s1 a{
+  background-color: #fff;
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 25px;
+  font-size: 13px;
+  margin-left: 43%;
+}
+.parallax.s1 a:hover{
+  color: #fff;
+  background-color: #17bebb;
+  border: 1px solid #17bebb;
+  font-size: 13px;
+}
+
+.pn img{
+  margin-top: 4px;
+  width: 650px;
+  height: 500px;
+}
+.join{
+  background-image: url(para/digi.jpg);
+  opacity: 0.9;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.join .sub-join{
+  background-color: rgba(1,1, 1,0.2);
 }
