@@ -12,6 +12,7 @@ app.config(function($routeProvider){
     }).when("/login",{
       templateUrl:"templets/login.html"
     }).when("/signup",{
+      controller: "SignupController",
       templateUrl:"templets/signup.html"
     }).when("/myacc",{
       templateUrl:"templets/myacc.html"
@@ -29,13 +30,12 @@ app.controller("SignupController",function($scope,$http,$location){
   console.log("submit clicked");
 $scope.submit=function(){
   let data={
-
+  "username" : $scope.username,
   "email": $scope.email,
-  "password": $scope.pass,
-  "username": $scope.user
+  "password": $scope.password
 }
 console.log(data);
-$http.post("http://localhost:3001/adduser",data).then(function(response){
+$http.post("http://localhost:3000/adduser",data).then(function(response){
   console.log(response.data);
 });
 

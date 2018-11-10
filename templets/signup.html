@@ -15,11 +15,14 @@
         </div>
         <div class="form">
           <h1>Sign Up</h1>
-          <form method="post" ng-controller="SignupController" name="signup">
-            <input type="text" name="user" placeholder="Username" ng-model="user">
-            <input type="email" name="email" placeholder="Email" ng-model="email">
-            <input type="password" name="pass" placeholder="Password" ng-model="pass">
-            <input type="submit" name="signin" value="SignUp" ng-click="submit()">
+          <form method="post" ng-controller="SignupController" name="myForm" novalidate>
+            <input type="text" class="validate" name="username" placeholder="Username" ng-model="username" required>
+            <input type="email" class="validate" name="email" placeholder="Email" ng-model="email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$error.required">Required</span>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$error.email">Email is required.</span>
+            <input type="password" class="validate" name="password" placeholder="Password" ng-model="password" required>
+            <input type="submit" name="submit" value="SignUp" ng-click="submit()" ng-disabled=" myForm.$invalid ">
+            <i class="material-icons right"></i>
           </form>
           <a href="#">Forget Password</a>
         </div>
