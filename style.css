@@ -349,7 +349,7 @@ right: 0;
   font-size: 13px;
   margin-left: 43%;
 }
-.parallax.s2 a{
+.parallax.s2 a,.parallax.s6 a{
     background-color: #fff;
   border: 1px solid gray;
   color: gray;
@@ -363,23 +363,41 @@ right: 0;
   border: 1px solid #17bebb;
   font-size: 13px;
 }
-.parallax.s2 a:hover{
+.parallax.s2 a:hover,.parallax.s6 a:hover{
    color: #fff;
   background-color: #17bebb;
   border: 1px solid #17bebb;
   font-size: 13px; 
 }
-.parallax.s2 i{
+.parallax.s2 i,.parallax.s6 i{
   color: black;
   font-size: 18px;
 }
-.parallax.s2 i:hover{
+.parallax.s2 i:hover,.parallax.s6 i:hover{
   color: white;
   font-size: 18px;
 }
 .parallax.s2 {
     background-image: url('bgs/img1.jpg');
     width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax.s5 {
+    background-image: url('bgs/img4.jpg');
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax.s6 {
+    background-image: url('bgs/img3.jpg');
+    width: 100%;
+    height: 100%;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
