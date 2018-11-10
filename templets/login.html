@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body ng-app="myApp">
     <section>
       <div class="fcont">
         <div class="form-cont">
@@ -15,10 +15,10 @@
         </div>
         <div class="form">
           <h1>Sign In</h1>
-          <form action="index.html" method="post">
-            <input type="text" name="user" placeholder="Username">
-            <input type="password" name="pass" placeholder="Password">
-            <input type="submit" name="signin" value="SignIn">
+          <form ng-controller="LoginController" name="myForm" method="post" novalidate>
+            <input type="text" class="validate" ng-model="username" name="username" required placeholder="username">
+            <input type="password" class="validate" ng-model="password" name="password" required placeholder="Password">
+            <input type="submit" name="signin" type="submit" ng-click="submit()" value="SignIn"  ng-disabled=" myForm.$invalid ">
           </form>
           <a href="#">Forget Password</a>
         </div>

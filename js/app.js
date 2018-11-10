@@ -10,6 +10,7 @@ app.config(function($routeProvider){
     }).when("/gallery",{
         templateUrl:"templets/gallery.html"
     }).when("/login",{
+      controller:"LoginController",
       templateUrl:"templets/login.html"
     }).when("/signup",{
       controller: "SignupController",
@@ -37,8 +38,37 @@ $scope.submit=function(){
 console.log(data);
 $http.post("http://localhost:3000/adduser",data).then(function(response){
   console.log(response.data);
+  $location.path('/login');
 });
 
 
+}
+});
+
+
+app.controller("LoginController",function($scope,$http,$location){
+  console.log("submit clicked");
+$scope.submit=function(){
+  let data={
+  "username": $scope.username,
+  "password": $scope.password
+  }
+console.log(data);
+$http.post("http://localhost:3000/loginuser",data).then(function(response){
+  console.log(response.data);
+  console.log(response.data.username);
+  $location.path('/');
+//  $location.path('/employeeprofile?email=response.data.email');
+  // $http.get("http://localhost:3000/employeeprofile?email="+$scope.email).then(function(response){
+  //   $scope.datam=response.data;
+  //   console.log("inside data fetcher");
+  //   console.log($scope.datam);
+  //
+  //
+  // });
+
+  console.log("inside post")
+  console.log(response.data);
+  });
 }
 });
