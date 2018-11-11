@@ -23,6 +23,8 @@ app.config(function($routeProvider){
       templateUrl:"templets/card.html"
     }).when("/cate",{
       templateUrl:"templets/cate.html"
+    }).when("/writeblog",{
+      templateUrl:"templets/write.html"
     });
 
 });
