@@ -22,12 +22,44 @@ app.config(function($routeProvider){
     }).when("/pro",{
       templateUrl:"templets/card.html"
     }).when("/cate",{
+      controller: "catecontroller",
       templateUrl:"templets/cate.html"
     }).when("/writeblog",{
       templateUrl:"templets/write.html"
     });
 
 });
+
+
+
+
+app.controller("blogscontroller",function($scope,$http){                  //$scope is a application object
+  $http.get("http://localhost:3050/blogs").then(function(response){
+        $scope.data1=response.data;
+        console.log(response.data);
+      })
+});
+//###################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+//json data jobs/////////////////////-------------------------------##################3
+app.controller("catecontroller",function($scope,$http){
+  $http.get("http://localhost:3050/cate").then(function(response){
+        $scope.data2=response.data;
+        console.log(response.data);
+      })
+});
+
+
+var f = "../nodejs/data2.json";
+
+writeTextFile(f, "Spoon");
+
+function writeTextFile(afilename, output)
+{
+  var txtFile =new File(afilename);
+  txtFile.writeln(output);
+  txtFile.close();
+}
 
 app.controller("SignupController",function($scope,$http,$location){
   console.log("submit clicked");
@@ -74,3 +106,5 @@ $http.post("http://localhost:3000/loginuser",data).then(function(response){
   });
 }
 });
+
+

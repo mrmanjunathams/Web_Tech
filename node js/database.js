@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express();
+const http = require('http');
 var fs=require('fs');
 var bodyParser = require('body-parser');
 var mongoose=require('mongoose');
@@ -7,7 +8,7 @@ var session=require('express-session');
 let ue=bodyParser.json();
 var nodemailer = require('nodemailer');
 
-
+app.use("/stylesheet",express.static(__dirname+"/stylesheet"))
 
 mongoose.connect("mongodb://bloggerbytes:manjunatha9598@ds157923.mlab.com:57923/bloggerbytes");
 /* Register collection  for employeesss*/
@@ -69,11 +70,13 @@ var username=req.body.username;
     // var value=req.body.email;
      //req.session[name]=value;
      
+    
     // console.log("insidelogin session"+req.session.email);
 
     //return res.status(200).send();
   //  req.session.email=email;
     console.log('success');
+    
     res.send({message:"successful login",
     username:req.body.username
   });
@@ -82,3 +85,35 @@ var username=req.body.username;
 //console.log(req.session);
 //console.log("session "+req.session.email);
 });
+
+app.get("/myacc",function(req,res){
+  console.log("------session outside --------");
+ console.log(req.session.username);
+    Reg1.findOne({username:req.query.username},function(err,data){
+   console.log(data);
+    res.json(data);
+});
+});
+
+
+
+//Server Js
+
+app.get("/blogs",function(req,res){
+  res.writeHead(200,{"Content-Type":"application/json"})
+  fs.createReadStream(__dirname+"/data1.json").pipe(res);
+
+});
+app.get("/cate",function(req,res){
+  res.writeHead(200,{"Content-Type":"application/json"})
+  fs.createReadStream(__dirname+"/data2.json").pipe(res);
+
+});
+app.listen(3050);
+
+
+
+console.log("server staarted at 3050");
+
+
+console.log("done");

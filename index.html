@@ -18,6 +18,18 @@
    <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
    <script src="js/app.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){
+    $("#bbb1").click(function(){
+        $("#acc").attr("href", "#!myacc");
+    });
+});
+     $(document).ready(function(){
+    $("#bbb2").click(function(){
+        $("#acc").attr("href", "#!myacc");
+    });
+});
+   </script>
   </head>
   <body ng-app="myApp" style="font-family: 'Ubuntu', sans-serif;">
     <nav class="main">
@@ -31,7 +43,7 @@
        <li><a href="#!rewards">REWARDS</a></li>
        <li><a href="#!gallery">GALLERY</a></li>
        <li><a href="#!aboutme">ABOUT US</a></li>
-       <li><a class="modal-trigger" href="#modal1">MY ACCOUNT</a></li>
+       <li><a id="acc" class="modal-trigger" href="#modal1">MY ACCOUNT</a></li>
      </ul>
    </div>
  </nav>
@@ -52,11 +64,11 @@
       <p style="text-align:center;">If you already have account please Sign In.<br> If you are new user please Sign Up</p>
       <div class="row">
         <div class="col s2">
-          <a style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!signup" class="waves-effect waves-light btn">Sign Up</a>
+          <a id="bbb1" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!signup" class="waves-effect waves-light btn">Sign Up</a>
         </div>
         <div class="col s8">.</div>
         <div class="col s2">
-          <a style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!login" class="waves-effect waves-light btn">Sign In</a>
+          <a id="bbb2" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!login" class="waves-effect waves-light btn">Sign In</a>
         </div>
      </div>
     </div>

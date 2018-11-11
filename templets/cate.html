@@ -5,7 +5,10 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Mukta+Mahee" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Lobster|Ubuntu|Varela+Round" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -16,7 +19,7 @@
    <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body><br>
+<body ng-app="myApp"><br>
 	<div class="title">
       <br><h4>Categories</h4><br>
     </div><br>
@@ -27,7 +30,7 @@
           <div class="nav-wrapper">
             <form>
               <div class="input-field">
-                <input id="search" type="search" required>
+                <input id="search" ng-model="search" type="search" required>
                 <label class="label-icon" for="search"><i class="material-icons" style="color:#17bebb;">search</i></label>
                 <i class="material-icons" >close</i>
               </div>
@@ -48,18 +51,31 @@
           <a href="#" style="margin:0 0 0 37% ;"><i class="material-icons">check</i>Fashion</a><br>
         </div>
     	</div>
-    	<div class="col s7"><br><br>
-    		<h6 style="color:#17bebb;">Fashion | Lifestyle</h6>
-        <h5>The Most Popular Leg Workout for Men</h5>
+    	<div class="col s7" ng-controller="catecontroller"><br><br>
+        <table ng-repeat="d in data2 | filter : search">
+          <tbody>
+            <tr>
+              <td>
+    		<h6 style="color:#17bebb;">{{d.cate}}</h6>
+        <h5>{{d.title}}</h5>
         <figure>
-          <img src="images/img8.jpg" alt="Travel" style="width:100%">
-          <figcaption style="margin-left:50%; color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
+          <img src="{{d.img}}" alt="Travel" style="width:100%">
+          <figcaption style="margin-left:44%; color:#17bebb; font-size:16px;font-family: 'Fjalla One', sans-serif;"><i class="fa fa-user"></i> By {{d.auth}}</figcaption>
         </figure>
-        <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-  Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-  <button style="margin:0 0 0 40%;border-radius:20px;background:#17bebb;color:#fff;" class="btn waves-effect waves-light">Continue Reading
-  </button>
+        <p style="text-align:justify;">{{d.blogp1}}</p>
+        <p>
+          <label>
+            <input id="indeterminate-checkbox" type="checkbox" ng-model="myVar">
+            <span>READ MORE ABOUT IT</span>
+          </label>
+        </p>
+        <div ng-show="myVar">
+    <p style="text-align:justify;">{{d.blogp2}}</p> 
+  </div>
+  </td>
+ </tr>
+</tbody>
+</table>
     	</div>
     	<div class="col s2"><br><br>
     		<h6 style="color:#17bebb;"><b>________</b></h6>
