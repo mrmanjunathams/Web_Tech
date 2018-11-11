@@ -3,7 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script>
+$(document).ready(function(){
+    var username,password;
+    $("#submit").click(function(){
+        email=$("#username").val();
+        pass=$("#password").val();
+        /*
+        * Perform some validation here.
+        */
+        $.post("http://localhost:3000/login",{email:username,password:password},function(data){       
+            if(data==='done')          
+            {
+                window.location.href="/myacc";
+            }
+        });
+    });
+});
+</script>
   </head>
   <body ng-app="myApp">
     <section>
@@ -16,9 +35,9 @@
         <div class="form">
           <h1>Sign In</h1>
           <form ng-controller="LoginController" name="myForm" method="post" novalidate>
-            <input type="text" class="validate" ng-model="username" name="username" required placeholder="username">
-            <input type="password" class="validate" ng-model="password" name="password" required placeholder="Password">
-            <input type="submit" name="signin" type="submit" ng-click="submit()" value="SignIn"  ng-disabled=" myForm.$invalid ">
+            <input type="text" id="username" class="validate" ng-model="username" name="username" required placeholder="username">
+            <input type="password" id="password" class="validate" ng-model="password" name="password" required placeholder="Password">
+            <input type="submit" id="submit" name="signin" type="submit" ng-click="submit()" value="SignIn"  ng-disabled=" myForm.$invalid ">
           </form>
           <a href="#">Forget Password</a>
         </div>

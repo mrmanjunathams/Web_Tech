@@ -75,7 +75,7 @@ var username=req.body.username;
   //  req.session.email=email;
     console.log('success');
     res.send({message:"successful login",
-    username:req.body.usrname
+    username:req.body.username
   });
     //res.json(data);
 });

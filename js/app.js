@@ -16,7 +16,7 @@ app.config(function($routeProvider){
       controller: "SignupController",
       templateUrl:"templets/signup.html"
     }).when("/myacc",{
-      templateUrl:"templets/myacc.html"
+      templateUrl:"templets/card.html"
     }).when("/rewards",{
       templateUrl:"templets/timeline.html"
     }).when("/pro",{
@@ -38,7 +38,7 @@ $scope.submit=function(){
 console.log(data);
 $http.post("http://localhost:3000/adduser",data).then(function(response){
   console.log(response.data);
-  $location.path('/login');
+  $location.path('/myacc');
 });
 
 
@@ -57,7 +57,7 @@ console.log(data);
 $http.post("http://localhost:3000/loginuser",data).then(function(response){
   console.log(response.data);
   console.log(response.data.username);
-  $location.path('/');
+  $location.path('/myacc');
 //  $location.path('/employeeprofile?email=response.data.email');
   // $http.get("http://localhost:3000/employeeprofile?email="+$scope.email).then(function(response){
   //   $scope.datam=response.data;
