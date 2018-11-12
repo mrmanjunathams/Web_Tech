@@ -30,25 +30,39 @@
         <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
       </div>
       <div class="col s7" style="background:#f5fff5">
-        <h6 style="color:#17bebb;">Fashion | Lifestyle</h6>
-        <h5>The Most Popular Leg Workout for Men</h5>
+       <table ng-repeat="d in data1 | filter : search">
+          <tbody>
+            <tr>
+              <td>
+        <h6 style="color:#17bebb;">{{d.cate}}</h6>
+        <p style="line-height: 0px;font-size:10px;font-family: 'Fjalla One', sans-serif;color: gray; text-align: center;"><i class="fa fa-calendar "></i> {{d.date}}</p>
+        <h5>{{d.title}}</h5>
         <figure>
-          <img src="images/img8.jpg" alt="Travel" style="width:100%">
-          <figcaption style="margin-left:50%; color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
+          <img src="picyourpic/{{d.img}}.jpg" alt="Travel" style="width:100%">
+          <figcaption style="margin-left:44%; color:#17bebb; font-size:16px;font-family: 'Fjalla One', sans-serif;"><i class="fa fa-user"></i> By {{d.auth}}</figcaption>
         </figure>
-        <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-  Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-  <button style="margin:0 0 0 40%;border-radius:20px;background:#17bebb;color:#fff;" class="btn waves-effect waves-light">Continue Reading
-  </button>
+        <p style="text-align:justify;">{{d.blogp1}}</p>
+        <p>
+          <label>
+            <input id="indeterminate-checkbox" type="checkbox" ng-model="myVar" >
+            <span>READ MORE ABOUT IT</span>
+          </label>
+        </p>
+        <div ng-show="myVar">
+    <p style="text-align:justify;">{{d.blogp2}}</p> 
+  </div>
+  </td>
+ </tr>
+</tbody>
+</table>
       </div>
-      <div class="col s4">
+      <div class="col s4" id="row">
 
-        <div class="aboutme"><br>
+        <div class="aboutme"><br><br>
           <h6 style="color:#17bebb;"><b>________</b></h6>
           <h5>About Us</h5>
           <div class="parallax s5">
-           <h4 style="color: white;font-family: 'Lobster', cursive;">Bloggerbytes</h4>
+           <h4 style="color: white;font-family: 'Lobster', cursive;">Bloggerbytes</h4><br>
           </div>
           <h6 style="text-align: justify; font-size: 18px;font-family: 'Varela Round', sans-serif;">At Bloggerbytes, we believe there is a better way to do market or express yourself is important. A more valuable, less invasive way where peoples are sharing of information rather than searching. We're obsessively passionate about it, and our mission is to help people achieve it. We focus on varies categories of blogs like art, sciencs, travelling...etc. It's one of the least understood and least transparent aspects of great blogger, and we see that as an opportunity: We're excited to simplify blogging for everyone through our application.</h6>
           
@@ -60,30 +74,8 @@
     <a href="mailto:bloggerbytesinfo@gmail.com?subject=subject&cc=cc@example.com" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-envelope"></i></a>
       <br><br>
     </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
-      <div class="col s1">
-        <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-      </div>
-      <div class="col s7" style="background:#f5fff5">
-        <h6 style="color:#17bebb;">Health | Workout</h6>
-        <h5>The Most Popular Leg Workout for Men</h5>
-        <figure>
-          <img src="images/img8.jpg" alt="Travel" style="width:100%">
-          <figcaption style="color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
-        </figure>
-        <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-    Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-      </div>
-      <div class="col s4">
-        <h6 style="color:#17bebb;"><b>________</b></h6>
+        </div><br><br><br>
+         <h6 style="color:#17bebb;"><b>________</b></h6>
         <h5>Recent Post</h5>
         <div class="recent"><br>
           <img src="images/img3.jpg" alt="img" width="35%" height="23%">
@@ -95,31 +87,10 @@
           <p style="margin:-25% 0 0 50%;"><i class="fa fa-calendar "></i> 22-OCT-2018</p>
           <p style="margin:0 10% 0 50%; font-size:18px;">The Most Popular Leg Workout for Men</p>
         </div>
-      </div>
-    </div>
-
-    <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
-      <div class="col s1">
-        <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-        <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-      </div>
-      <div class="col s7" style="background:#f5fff5">
-        <h6 style="color:#17bebb;">Model | Fashion</h6>
-        <h5>The Most Popular Leg Workout for Men</h5>
-        <figure>
-          <img src="images/img8.jpg" alt="Travel" style="width:100%">
-          <figcaption style="color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
-        </figure>
-        <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-    Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-      </div>
-      <div class="col s4" id="col">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <h6 style="color:#17bebb;"><b>________</b></h6>
         <h5>Categories</h5>
-        <div class="cat">
+        <div class="cat" id="col">
           <a href="#"><i class="material-icons">check</i>Blog</a><br>
           <p style="text-align:center;line-height:0px;">--------------------------------------</p>
           <a href="#"><i class="material-icons">check</i>Life Style</a><br>
@@ -127,15 +98,17 @@
           <a href="#"><i class="material-icons">check</i>Travel</a><br>
           <p style="text-align:center;line-height:0px;">--------------------------------------</p>
           <a href="#"><i class="material-icons">check</i>Fashion</a><br>
-        </div><br><br>
+        </div><br><br><br>
         <h6 style="color:#17bebb;"><b>________</b></h6>
         <h5>Video Post</h5><br>
         <video class="responsive-video" controls>
           <source src="videos/vid.mp4" type="video/mp4">
         </video>
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
       </div>
     </div>
-    <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
+
+    <div class="row" id="row" style="margin:0;;padding:0"><br><br><br>
       <div class="col s1">
         <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
         <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>

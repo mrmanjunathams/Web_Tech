@@ -3,8 +3,8 @@
     "no":1,
     "cate":"Fashion | Lifestyle",
     "title":"The Most Popular Leg Workout for Men",
-    "img":"images/img8.jpg",
-    "dat":"22-OCT-2018",
+    "img":"img8",
+    "date":"22-OCT-2018",
     "auth":"Manjunatha M S",
     "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
     "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
@@ -14,10 +14,21 @@
     "no":2,
     "cate":"Art | Lifestyle",
     "title":"Art Of Hearts",
-    "img":"images/img5.jpg",
+    "img":"img5",
     "date":"30-OCT-2018",
     "auth":"Manjunatha M S",
     "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
     "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
+  },
+
+   {
+    "no":3,
+    "cate":"Art | Record",
+    "title":"Two Hundred and Seventy Plastic Bags Rhythmically Inflate in a New Installation by Nils Völker",
+    "img":"img1",
+    "date":"30-OCT-2018",
+    "auth":"Manjunatha M S",
+    "blogp1":"Two hundred and seventy white garbage bags hang like ghosts in the columned hall of Vienna, Austria’s Museum für agewandte Kunst (MAK) for the exhibition Sagmeister & Walsh: Beauty. The piece is by Nils Völker (previously), and is titled after the number of bags present in the installation. Over 1000 precisely installed fans and 45 circuit boards keep their movement on track, helping to rhythmically inflate and deflate the hanging plastic objects. The repetitive crinkling fills the vast hall, creating an audio texture akin to the rustling of tissue paper or the sound of the tide on a sandy beach.",
+    "blogp2":"The concave installation is divided into nine segments that each contain two columns of plastic bags. While viewing the piece from the front you can only make out the white mass of plastic. Viewing it from the side or rear however, reveals the massive amount of cables and circuitry needed to make what appears to be such an effortless piece of art function. Two Hundred and Seventy is on view at MAK in Vienna through March 2019."
   }
 ]
