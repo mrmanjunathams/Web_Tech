@@ -4,6 +4,7 @@ app.config(function($routeProvider){
     $routeProvider.when("/",{
       templateUrl:"templets/home2.html"
     }).when("/blog",{
+        controller:"blogscontroller",
         templateUrl:"templets/blog.html"
     }).when("/aboutme",{
         templateUrl:"templets/aboutme.html"
@@ -49,18 +50,6 @@ app.controller("catecontroller",function($scope,$http){
       })
 });
 
-
-var f = "../nodejs/data2.json";
-
-writeTextFile(f, "Spoon");
-
-function writeTextFile(afilename, output)
-{
-  var txtFile =new File(afilename);
-  txtFile.writeln(output);
-  txtFile.close();
-}
-
 app.controller("SignupController",function($scope,$http,$location){
   console.log("submit clicked");
 $scope.submit=function(){
@@ -92,14 +81,7 @@ $http.post("http://localhost:3000/loginuser",data).then(function(response){
   console.log(response.data);
   console.log(response.data.username);
   $location.path('/myacc');
-//  $location.path('/employeeprofile?email=response.data.email');
-  // $http.get("http://localhost:3000/employeeprofile?email="+$scope.email).then(function(response){
-  //   $scope.datam=response.data;
-  //   console.log("inside data fetcher");
-  //   console.log($scope.datam);
-  //
-  //
-  // });
+
 
   console.log("inside post")
   console.log(response.data);

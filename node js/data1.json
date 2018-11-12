@@ -1,0 +1,23 @@
+[
+  {
+    "no":1,
+    "cate":"Fashion | Lifestyle",
+    "title":"The Most Popular Leg Workout for Men",
+    "img":"images/img8.jpg",
+    "dat":"22-OCT-2018",
+    "auth":"Manjunatha M S",
+    "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
+    "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
+  },
+
+  {
+    "no":2,
+    "cate":"Art | Lifestyle",
+    "title":"Art Of Hearts",
+    "img":"images/img5.jpg",
+    "date":"30-OCT-2018",
+    "auth":"Manjunatha M S",
+    "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
+    "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
+  }
+]

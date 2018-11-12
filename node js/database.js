@@ -8,8 +8,6 @@ var session=require('express-session');
 let ue=bodyParser.json();
 var nodemailer = require('nodemailer');
 
-app.use("/stylesheet",express.static(__dirname+"/stylesheet"))
-
 mongoose.connect("mongodb://bloggerbytes:manjunatha9598@ds157923.mlab.com:57923/bloggerbytes");
 /* Register collection  for employeesss*/
 let sampleSchema=new mongoose.Schema({
@@ -52,7 +50,7 @@ console.log("done");
 
 /*Login for user-----------------------------------------------------------------------------*/
 app.post('/loginuser',ue,function(req,res){
-  //console.log(req.body.email);
+  
 
 var username=req.body.username;
   var password=req.body.password;
@@ -66,35 +64,16 @@ var username=req.body.username;
       return res.status(404).send();
       console.log('fail1');
     }
-    // var name="email";
-    // var value=req.body.email;
-     //req.session[name]=value;
-     
-    
-    // console.log("insidelogin session"+req.session.email);
 
-    //return res.status(200).send();
-  //  req.session.email=email;
     console.log('success');
     
     res.send({message:"successful login",
     username:req.body.username
   });
-    //res.json(data);
-});
-//console.log(req.session);
-//console.log("session "+req.session.email);
+   
 });
 
-app.get("/myacc",function(req,res){
-  console.log("------session outside --------");
- console.log(req.session.username);
-    Reg1.findOne({username:req.query.username},function(err,data){
-   console.log(data);
-    res.json(data);
 });
-});
-
 
 
 //Server Js
