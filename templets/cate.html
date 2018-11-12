@@ -26,7 +26,8 @@
     </div><br>
     <div class="row">
     	<div class="col s3"><br><br>
-    		<h6>Enter any key to search...</h6>
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h6>Enter any key to search...</h6><br>
         <nav>
           <div class="nav-wrapper">
             <form>
@@ -38,8 +39,8 @@
             </form>
           </div>
         </nav>
+        <br><br>
         <br>
-        
         <h6 style="color:#17bebb;"><b>________</b></h6>
         <h5>Categories</h5><br>
         <div class="cat">
@@ -50,10 +51,50 @@
           <a href="#" style="margin:0 0 0 37% ;"><i class="material-icons">check</i>Travel</a><br>
           <p style="text-align:center;line-height:0px;">--------------------------------------</p>
           <a href="#" style="margin:0 0 0 37% ;"><i class="material-icons">check</i>Fashion</a><br>
+        </div><br><br>
+         <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Blockquote</h5>
+        <p style="margin:0 12% 0 12%; text-align:justify;">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around</p>
+        <br><br>
+
+
+         <div class="aboutme"><br><br>
+          <h6 style="color:#17bebb;"><b>________</b></h6>
+          <h5>About Us</h5>
+          <div class="parallax s5">
+           <h4 style="color: white;font-family: 'Lobster', cursive;">Bloggerbytes</h4>
+          </div>
+          <h6 style="text-align: justify; font-size: 18px;font-family: 'Varela Round', sans-serif;">Bloggerbytes is an always one blogging platform for all bloggers. We make innovative, beautiful way to represent you that empower those passions to find more intending.</h6>
+          
+           <div class="parallax s6">
+      <h4 style="color: white;font-family: 'Lobster', cursive;">Contact Us</h4>
+        <a href="https://www.facebook.com/Bloggerbytes-319605895260048/" class="btn-floating" style="margin-left: 18%;font-family: 'Fjalla One', sans-serif;border:2px solid #fff;"><i style="color: black;" class="fa fa-facebook"></i></a>
+    <a href="https://twitter.com/bloggerbytes" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-twitter"></i></a>
+    <a href="https://t.me/bloggerbytes" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-telegram"></i></a>
+    <a href="mailto:bloggerbytesinfo@gmail.com?subject=subject&cc=cc@example.com" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-envelope"></i></a>
+      <br><br>
+    </div>
         </div>
+          <br><br>
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Subscribe to our newsletter</h5>
+
+        <form>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" style="color:#17bebb;" class="validate">
+            <label style="color:#17bebb;" for="email">Email</label>
+          </div>
+        </div>
+    <button style="margin:0 0 0 30%; background:#17bebb;color:#fff;" class="btn waves-effect waves-light" type="submit" name="action">Subscribe
+      <i class="material-icons right">send</i>
+    </button>
+
+      </form>
+        <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
     	</div>
     	<div class="col s7" ng-controller="catecontroller"><br><br>
-        <table ng-repeat="d in data2 | filter : search">
+        <table ng-repeat="d in data2 | filter : search ">
           <tbody>
             <tr>
               <td>
@@ -61,7 +102,7 @@
         <p style="line-height: 0px;font-size:10px;font-family: 'Fjalla One', sans-serif;color: gray; text-align: center;"><i class="fa fa-calendar "></i> {{d.date}}</p>
         <h5>{{d.title}}</h5>
         <figure>
-          <img src="picyourpic/{{d.img}}.jpg" alt="Travel" style="width:100%">
+          <img src="picyourpic/{{d.img}}.jpg" alt="Travel" width="666px" height="444px" title="Smiley face">
           <figcaption style="margin-left:44%; color:#17bebb; font-size:16px;font-family: 'Fjalla One', sans-serif;"><i class="fa fa-user"></i> By {{d.auth}}</figcaption>
         </figure>
         <p style="text-align:justify;">{{d.blogp1}}</p>

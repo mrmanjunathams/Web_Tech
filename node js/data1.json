@@ -1,23 +1,34 @@
 [
   {
     "no":1,
-    "cate":"Fashion | Lifestyle",
-    "title":"The Most Popular Leg Workout for Men",
-    "img":"img8",
-    "dat":"22-OCT-2018",
-    "auth":"Manjunatha M S",
-    "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
-    "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
+    "cate":"See | Ocean",
+    "title":"Uniting for Our Ocean After the Midterm Elections",
+    "img":"img11",
+    "date":"10-NOV-2018",
+    "auth":"Dr.Manu Acharya",
+    "blogp1":"As the U.S. emerges from a polarizing and divisive midterm election, Ocean Conservancy looks forward to continuing our work on important issues, on behalf of our members and the millions of people who depend on a healthy ocean.In the 115th Congress, our ocean saw many important and hard-fought battles over environmental policy, as well as an occasional bright spot of ocean-friendly legislative accomplishment, such as passage of the SOS Act and the continuation of steady funding for NOAA. As this congress enters the final weeks of its lame-duck session, we must remain vigilant to protect current conservation laws until the congress adjourns. We must also push this congress to immediately address the harmful algal blooms that have plagued our coasts.",
+    "blogp2":"It’s easy to get caught up in the divisiveness of today’s political climate, but we have more in common than we realize. Each and every one of us relies on our ocean—and protecting it is a mission that unites all of us from coast to coast, Alaska to Hawaii."
   },
 
   {
-    "no":2,
-    "cate":"Art | Lifestyle",
-    "title":"Art Of Hearts",
-    "img":"img5",
-    "date":"30-OCT-2018",
-    "auth":"Manjunatha M S",
-    "blogp1":"Leg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.",
-    "blogp2":"Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing."
+    "no":6,
+    "cate":"Home | Office",
+    "title":"Clients From Hell",
+    "img":"img12",
+    "date":"11-NOV-2018",
+    "auth":"John Shinna",
+    "blogp1":"Clients From Hell posts daily reminders about how difficult it can be to work with clients who often don't know the first thing about what it is that they've hired you to do.  As usual, not knowing anything about a subject doesn't stop some clients from thinking they know what's best, telling you you're bad at your job, or simply refusing to pay after you've produced the work.",
+    "blogp2":"This blog is a must for anyone who has ever freelanced in a creative capacity, specifically graphic design, photography, or writing.  The examples you'll read on CFH might sometimes make your blood boil, but you'll also find yourself laughing over the ridiculous questions posed by people who still haven't quite mastered how to reboot their computers, but still feel qualified to complain or criticize the pros."
+  },
+
+  {
+    "no":7,
+    "cate":"Women | Female",
+    "title":"We Need Male Allies to Help Us Get Ahead",
+    "img":"img13",
+    "date":"12-NOV-2018",
+    "auth":"Melissa",
+    "blogp1":"For gender parity to succeed, we need male allies at every level of government, in the workplace, and the communities we call home. The main argument for achieving women’s parity is that you only get half the results when you engage half of the population. So doesn’t it make sense, that the same is true […]",
+    "blogp2":"Serena Williams recently made headlines after losing in the U.S. Open final match to Naomi Osaka. The news wasn’t based on how Williams played the game, but instead focused on a heated debate she had with an umpire that led to her getting slapped with a $17,000 fine. The entire interaction sparked a much larger […]"
   }
 ]
