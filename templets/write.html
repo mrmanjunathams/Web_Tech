@@ -18,7 +18,46 @@
    <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
+<body><br>
+  <div class="title">
+      <br><h4>Write Your Blog</h4><br>
+  </div><br>
 
+  <div class="row" id="write">
+    <div class="col s4"></div>
+    <div class="col s4" id="blog">
+      <form id="form">
+      <label for="blogger_name">Your username</label>
+      <input type="text" id="blogger_name" name="blogger_name" placeholder="enter your user name" />
+      <label for="cate">Category</label>
+      <input type="text" id="cate" name="cate" placeholder="enter your blog category" />
+      <label for="blogger_name">Date to show</label>
+       <input type="text" class="datepicker" placeholder="pick a date to your blog"/>
+       <label for="img_name">Image name from our gallery</label>
+      <input type="text" id="img_name" name="img_name" placeholder="enter img name" />
+      <label for="auth_name">Your Name</label>
+      <input type="text" id="auth_name" name="auth_name" placeholder="enter your name" />
+      <label for="blog_p1">Blog (Paragraph one)</label>
+      <textarea placeholder="enter paragraph" id="blog_p1" name="blog_p1"></textarea>
+      <label for="blog_p2">Blog (Paragraph two)</label>
+      <textarea placeholder="enter paragraph" id="blog_p2" name="blog_p2"></textarea><br><br>
+      <input type="submit" id="post" name="post" value="POST" />
+    </form>
+    </div>
+    <div class="col s4"></div>
+  </div>
+
+  <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+  </script>
 </body>
 </html>

@@ -1,203 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Expo.</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-   <!-- Compiled and minified JavaScript -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Mukta+Mahee" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Lobster|Ubuntu|Varela+Round" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body style="width:100%;">
-  <div class="carousel carousel-slider" style="height:570px">
-      <a class="carousel-item" href="#one!"><img src="images/img5.jpg" style="width:100%; height:100%"></a>
-      <a class="carousel-item" href="#two!"><img src="images/img2.jpg" style="width:100%; height:100%"></a>
-      <a class="carousel-item" href="#three!"><img src="images/img6.jpg" style="width:100%; height:100%"></a>
-      <a class="carousel-item" href="#four!"><img src="images/img1.jpg" style="width:100%; height:100%"></a>
-    </div>
-<script type="text/javascript">
-var instance = M.Carousel.init({
-  fullWidth: true,
-  indicators: true,
-});
-// Or with jQuery
+<body>
+	<div class="parallax s1">
+		<br><br><br><br><br>
+		<h2 style="font-family: 'Anton', sans-serif;">Publish your passions, your way</h2>
+		<h5 style="font-family: 'Fjalla One', sans-serif;">Create a unique and beautiful blog. It’s easy and free.</h5><br>
+		<a id="bbb3" href="#!blog" class="waves-effect waves-light btn" style="font-family: 'Fjalla One', sans-serif;	"><i class="material-icons left">local_offer</i>GET STARTED</a><br><br><br><br><br><br>
+		<div class="body">
+			<div class="indicator">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div><br><br><br><br>
+	</div>
 
-$('.carousel.carousel-slider').carousel({
-  fullWidth: true,
-  indicators: true
-});
-</script>
-  <div class="row" id="row" style="margin: 0;padding:0"><br><br><br><br><br>
-    <div class="col s1">
-      <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-    </div>
-    <div class="col s7" style="background:#f5fff5">
-      <h6 style="color:#17bebb;">Fashion | Lifestyle</h6>
-      <h5>The Most Popular Leg Workout for Men</h5>
-      <figure>
-        <img src="images/img8.jpg" alt="Travel" style="width:100%">
-        <figcaption style="margin-left:50%; color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
-      </figure>
-      <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
+	<div class="parallax s2">
+		<br><br>
 
-Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-<button style="margin:0 0 0 40%;border-radius:20px;background:#17bebb;color:#fff;" class="btn waves-effect waves-light">Continue Reading
-</button>
-    </div>
-    <div class="col s4">
-      <h6>Enter any key to search...</h6>
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons" style="font-size: 24px;color:#17bebb;">search</i></label>
-            </div>
-          </form>
-        </div>
-      </nav>
-      <div class="aboutme"><br>
-        <h6 style="color:#17bebb;"><b>________</b></h6>
-        <h5>About Us</h5>
-        <img src="images/me.jpg" alt="Manju" width="80%" height="75%" style="margin-left:11%;">
-        <h6 style="text-align:justify; margin: 0 11% 0 11%;">Hi! <b>Iam Manjunatha M S</b>. Pursuing B.E in RajaRajeswari College Of Engineering. </h6>
-        <br>
-        <a style="margin: 0 0 0 25%;" class="btn-floating"><i class="fa fa-linkedin "></i></a>
-        <a class="btn-floating"><i class="fa fa-facebook-f"></i></a>
-        <a class="btn-floating"><i class="fa fa-twitter"></i></a>
-        <a class="btn-floating"><i class="fa fa-google-plus"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
-    <div class="col s1">
-      <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-    </div>
-    <div class="col s7" style="background:#f5fff5">
-      <h6 style="color:#17bebb;">Health | Workout</h6>
-      <h5>The Most Popular Leg Workout for Men</h5>
-      <figure>
-        <img src="images/img8.jpg" alt="Travel" style="width:100%">
-        <figcaption style="color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
-      </figure>
-      <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-  Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-    </div>
-    <div class="col s4">
-      <h6 style="color:#17bebb;"><b>________</b></h6>
-      <h5>Recent Post</h5>
-      <div class="recent"><br>
-        <img src="images/img3.jpg" alt="img" width="35%" height="23%">
-        <p style="margin:-25% 0 0 50%;"><i class="fa fa-calendar "></i> 22-OCT-2018</p>
-        <p style="margin:0 10% 0 50%; font-size:18px;">The Most Popular Leg Workout for Men</p>
-      </div>
-      <div class="recent"><br>
-        <img src="images/img4.jpg" alt="img" width="35%" height="23%">
-        <p style="margin:-25% 0 0 50%;"><i class="fa fa-calendar "></i> 22-OCT-2018</p>
-        <p style="margin:0 10% 0 50%; font-size:18px;">The Most Popular Leg Workout for Men</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
-    <div class="col s1">
-      <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-    </div>
-    <div class="col s7" style="background:#f5fff5">
-      <h6 style="color:#17bebb;">Model | Fashion</h6>
-      <h5>The Most Popular Leg Workout for Men</h5>
-      <figure>
-        <img src="images/img8.jpg" alt="Travel" style="width:100%">
-        <figcaption style="color:#17bebb; font-size:15px;"><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</figcaption>
-      </figure>
-      <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-  Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-    </div>
-    <div class="col s4" id="col">
-      <h6 style="color:#17bebb;"><b>________</b></h6>
-      <h5>Categories</h5>
-      <div class="cat">
-        <a href="#"><i class="material-icons">check</i>Blog</a><br>
-        <p style="text-align:center;line-height:0px;">--------------------------------------</p>
-        <a href="#"><i class="material-icons">check</i>Life Style</a><br>
-        <p style="text-align:center; line-height:0px;">--------------------------------------</p>
-        <a href="#"><i class="material-icons">check</i>Travel</a><br>
-        <p style="text-align:center;line-height:0px;">--------------------------------------</p>
-        <a href="#"><i class="material-icons">check</i>Fashion</a><br>
-      </div><br><br>
-      <h6 style="color:#17bebb;"><b>________</b></h6>
-      <h5>Video Post</h5><br>
-      <video class="responsive-video" controls>
-        <source src="videos/vid.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-  <div class="row" id="row" style="margin:0;;padding:0"><br><br><br><br><br>
-    <div class="col s1">
-      <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
-      <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
-    </div>
-    <div class="col s7" style="background:#f5fff5">
-      <h6 style="color:#17bebb;">Model | Fashion</h6>
-      <h5>The Most Popular Leg Workout for Men</h5>
-      <video class="responsive-video" controls>
-        <source src="videos/vid.mp4" type="video/mp4">
-      </video>
-      <h6><i class="fa fa-calendar "></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</h6>
-            <p style="text-align:justify;"><b style="font-size:20px;">L</b>eg workouts can be tiring, long, and intensive. You're pressed for time and we're here to help provide you with the fastest most effective workout possible to build those wheels of steel.<br>
-
-  Often neglected and frequently skipped, the legs are quite possibly the most important muscle group. Mass can be added to the quads and hamstrings far easier than other areas of the body. However, doing set after set of squats can be time consuming and taxing.</p>
-    </div>
-    <div class="col s4" id="col">
-      <h6 style="color:#17bebb;"><b>________</b></h6>
-      <h5>Blockquote</h5>
-      <p style="margin:0 12% 0 12%; text-align:justify;">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around</p>
-      <br><br>
-      <h6 style="color:#17bebb;"><b>________</b></h6>
-      <h5>Subscribe to our newsletter</h5>
-      <form>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" style="color:#17bebb;" class="validate">
-          <label style="color:#17bebb;" for="email">Email</label>
-        </div>
-      </div>
-  <button style="margin:0 0 0 30%; background:#17bebb;color:#fff;" class="btn waves-effect waves-light" type="submit" name="action">Subscribe
-    <i class="material-icons right">send</i>
-  </button>
-
-    </form>
-    </div>
-  </div><br><br>
-    <ul class="pagination">
-      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-      <li class="active"><a href="#!">1</a></li>
-      <li class="waves-effect"><a href="#!">2</a></li>
-      <li class="waves-effect"><a href="#!">3</a></li>
-      <li class="waves-effect"><a href="#!">4</a></li>
-      <li class="waves-effect"><a href="#!">5</a></li>
-      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    </ul><br>
+		<h4 style="font-family: 'Lobster', cursive;">Some intresting facts about Bloggerbytes</h4><br>
+		<div style="background-color:Aliceblue">
+        <div class="row" style="background:Aliceblue;">
+          <div class="col s3" style="text-align:center;background-color:Aliceblue;">
+            <h3>1 MILLION+</h3>
+            <h5>Visiters to site</h5>
+          </div>
+          <div class="col s3" style="text-align:center;background-color:Aliceblue;">
+            <h3>400K +</h3>
+            <h5>Bloggers over world</h5>
+          </div>
+          <div class="col s3" style="text-align:center;background-color:Aliceblue;">
+            <h3>15 +</h3>
+            <h5>Categories</h5>
+          </div>
+          <div class="col s3" style="text-align:center;background-color:Aliceblue;">
+            <h3>4.7/5</h3>
+            <h5>Star rating by our users</h5>
+          	</div>
+           </div>
+		</div>
+		<br>
+		<a href="https://www.facebook.com/Bloggerbytes-319605895260048/" class="btn-floating" style="margin-left: 38%;font-family: 'Fjalla One', sans-serif;"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/bloggerbytes" class="btn-floating" style="font-family: 'Fjalla One', sans-serif;"><i class="fa fa-twitter"></i></a>
+		<a href="https://t.me/bloggerbytes" class="btn-floating" style="font-family: 'Fjalla One', sans-serif;"><i class="fa fa-telegram"></i></a>
+		<a href="mailto:bloggerbytesinfo@gmail.com?subject=subject&cc=cc@example.com" class="btn-floating" style="font-family: 'Fjalla One', sans-serif;"><i class="fa fa-envelope"></i></a>
+		<br><br><br>
+	</div>
+	<div class="about">
+			<div class="sub-about" style="margin:0 20% 0 20%;">
+				<br><br><br>
+			<h3 style="font-family: 'Kumar One Outline', cursive;"><b>About Us</b></h3>
+			<h6 style="text-align: justify; font-size: 18px;font-family: 'Varela Round', sans-serif;">At Bloggerbytes, we believe there is a better way to do market or express yourself is important. A more valuable, less invasive way where peoples are sharing of information rather than searching. We're obsessively passionate about it, and our mission is to help people achieve it. We focus on varies categories of blogs like art, sciencs, travelling...etc. It's one of the least understood and least transparent aspects of great blogging, and we see that as an opportunity: We're excited to simplify blogging for everyone through our application.</h6><br>
+			<h6 style="text-align: justify; font-size: 18px;font-family: 'Varela Round', sans-serif;">Bloggerbytes is an always one blogging platform for all bloggers. We make innovative, beautiful way to represent you that empower those passions to find more intending.</h6><br><br>
+			<br><br><br><br>	
+		</div>
+	</div>
+	<div class="parallax s3">
+		<div class="row">
+			<div class="col s3"></div>
+    		<div class="col s6">
+      			<div class="card" style="margin: 25% 0 25% 0;">
+       				 <div class="card-content white-text">
+          			 <span class="card-title"><h4 style="color:black;font-family: 'Fjalla One', sans-serif;"><b>Choose the perfect picture</b></h4></span><br>
+         			 <p style="color: black;text-align: justify;font-family: 'Fjalla One', sans-serif; margin: 0 20% 0 20%;"><b>Create a beautiful blog that fits your style. Choose from a selection of easy-to-use pictures – all with flexible resolution and hundreds of  images to design something new.</b></p>
+       				 </div>
+      			</div>
+    		</div>
+    		<div class="col s3"></div>
+  		</div>
+	</div>
+	<div class="join">
+			<div class="sub-join" style="margin-top: -20px;">
+				<br><br><br><br>
+			<h3>Join millions of others</h3>
+			<h6>Whether sharing your expertise, breaking news, or whatever’s on<br> your mind, you’re in good company on Blogger. Sign up to discover <br>why millions of people have published their passions here.</h6><br>
+			<a href="#!blog" class="waves-effect waves-light btn" style="font-family: 'Fjalla One', sans-serif;	"><i class="material-icons left">local_offer</i>GET STARTED</a><br><br><br>
+			</div>
+	</div>
 </body>
 </html>

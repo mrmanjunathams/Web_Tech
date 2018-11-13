@@ -461,6 +461,55 @@ right: 0;
   animation-delay: 0.8s;
 }
 
+#write #blog #form label{
+  font-size: 20px;
+  margin: 0 0 0 3%;
+  color: #000;
+}
+
+#write #blog #form input{
+   display: block;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  font-size: 15px;
+
+}
+
+#write #blog #form input:hover,#write #blog #form textarea:hover{
+  border: 2px solid #17bebb;
+}
+#blogwrite{
+  background:url(para/img1.jpg);
+}
+#write #blog #form textarea{
+  width: 100%;
+  height: 200px;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  font-size: 15px;
+}
+
+#write #blog #form input[type="submit"]{
+  background-color: #17bebb;
+  color: white;
+  border: 2px solid #17bebb;
+}
+
+#write #blog #form input[type="submit"]:hover{
+  background: #ff0057;
+  border: 2px solid #ff0057;
+}
+
 @keyframes animate{
   0%{
     border-color:#fff;
