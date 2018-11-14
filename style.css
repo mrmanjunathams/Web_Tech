@@ -509,6 +509,12 @@ right: 0;
   background: #ff0057;
   border: 2px solid #ff0057;
 }
+#write{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url(/home/silence/Downloads/img41.jpg);
+}
 
 @keyframes animate{
   0%{
