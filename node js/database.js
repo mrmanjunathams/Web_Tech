@@ -21,14 +21,13 @@ let Sam1 = mongoose.model("user", sampleSchema);
 
 let sampleSchema2=new mongoose.Schema({
 
-  username:String,
-  email:String,
-  password:String,
+  auth:String,
+  title:String,
+  cate:String,
   date:String,
-  categorie:String,
-  img_name:String,
-  blog_p1:String,
-  blog_p2:String
+  img:String,
+  blogp1:String,
+  blogp2:String
 
 });
 
@@ -41,7 +40,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-
+app.use(session({secret:"manjunatha",resave:false,saveUninitialized:true,cookie:{maxage:6000}}));
 /*Display on console of Register insert documentssss For employeess--------------------------------*/
 app.get("/Sam1",function(req,res){
   Sam1.find({},function(err,data){
@@ -61,6 +60,15 @@ console.log("server started at 3000");
 
 console.log("done");
 
+//11111111111111111111111111111111111111111111
+
+  app.get("/BAdd",function(req,res){
+  BAdd.find({},function(err,data){
+    console.log(data);
+    res.json(data);
+  });
+});
+  
 
 //@@@@@@@@@@@@@@@@add blog@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -74,7 +82,7 @@ app.get("/BAdd",function(req,res){
 
 app.post('/addblog',ue,function(req, res) {
   console.log(req.body);
-  Sam1(req.body).save(function(err,data){
+  BAdd(req.body).save(function(err,data){
     res.json(data);
   });
 });
@@ -99,6 +107,14 @@ var username=req.body.username;
       return res.status(404).send();
       console.log('fail1');
     }
+
+
+
+    req.session.username=req.body.username;
+console.log("-----session inside-----");
+     console.log(req.session);
+
+
 
     console.log('success');
     

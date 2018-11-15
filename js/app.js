@@ -26,7 +26,7 @@ app.config(function($routeProvider){
       controller: "catecontroller",
       templateUrl:"templets/cate.html"
     }).when("/writeblog",{
-
+      controller:"WBController",
       templateUrl:"templets/write.html"
     });
 
@@ -45,7 +45,7 @@ app.controller("blogscontroller",function($scope,$http){                  //$sco
 
 //json data jobs/////////////////////-------------------------------##################3
 app.controller("catecontroller",function($scope,$http){
-  $http.get("http://localhost:3050/cate").then(function(response){
+  $http.get("http://localhost:3050/BAdd").then(function(response){
         $scope.data2=response.data;
         console.log(response.data);
       })
@@ -74,12 +74,13 @@ app.controller("WBController",function($scope,$http,$location){
   console.log("submit clicked");
 $scope.submit=function(){
   let data={
-  "username" : $scope.username,
-  "categorie": $scope.categorie,
-  "date": $scope.password,
-  "img_name": $scope.img_name,
-  "blog_p1": $scope.blog_p1,
-  "blog_p2": $scope.blog_p2
+  "auth" : $scope.auth,
+  "title": $scope.titl,
+  "cate": $scope.cate,
+  "date": $scope.date,
+  "img": $scope.img,
+  "blogp1": $scope.blogp1,
+  "blogp2": $scope.blogp2
 }
 console.log(data);
 $http.post("http://localhost:3020/addblog",data).then(function(response){

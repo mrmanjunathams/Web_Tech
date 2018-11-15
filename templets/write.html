@@ -27,13 +27,17 @@
           <span style="text-align: center;font-family: 'Allerta Stencil', sans-serif;text-transform: uppercase;" class="card-title">Write a blog about thing which inspries you</span>
            <div class="row" id="write"><br>
     <form id="blog" ng-controller="WBController" name="myForm" novalidate>
+      <div class="col s12">
+        <label for="title">Title of Blog</label>
+      <input type="text" id="title" name="titl" ng-model="titl" required placeholder="enter your blog title" />
+      </div>
     <div class="col s3">
       <label for="blogger_name">Your username</label>
-      <input type="text" id="blogger_name" name="blogger_name" ng-model="username" required placeholder="enter your user name" />
+      <input type="text" id="blogger_name" name="auth" ng-model="auth" required placeholder="enter your user name" />
     </div>
     <div class="col s3">
       <label for="cate">Categories</label>
-      <input type="text" id="cate" name="cate" ng-model="categorie" required placeholder="enter your blog Categorie" />
+      <input type="text" id="cate" name="cate" ng-model="cate" required placeholder="enter your blog Categorie" />
     </div>
     <div class="col s3">
       <label for="blogger_name">Date to show</label>
@@ -41,14 +45,14 @@
     </div>
     <div class="col s3">
       <label for="img_name">Image name from our gallery</label>
-      <input type="text" id="img_name"ng-model="img_name" required name="img_name" placeholder="enter img name" />
+      <input type="text" id="img_name"ng-model="img" required name="img_name" placeholder="enter img name" />
     </div>
     <div class="col s12">
 
       <label for="blog_p1">Blog (Paragraph one)</label>
-      <textarea placeholder="enter paragraph" ng-model="blog_p1" required id="blog_p1" name="blog_p1"></textarea>
+      <textarea placeholder="enter paragraph" ng-model="blogp1" required id="blog_p1" name="blog_p1"></textarea>
       <label for="blog_p2">Blog (Paragraph two)</label>
-      <textarea placeholder="enter paragraph" id="blog_p2" ng-model="blog_p2" required name="blog_p2"></textarea><br><br>
+      <textarea placeholder="enter paragraph" id="blog_p2" ng-model="blogp2" required name="blog_p2"></textarea><br><br>
       <input type="submit" id="post" name="post" value="POST YOUR BLOG" ng-click="submit()" ng-disabled=" myForm.$invalid "/>
     </div>
     </form>
