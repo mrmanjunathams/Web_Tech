@@ -17,19 +17,19 @@
  <!-- Compiled and minified JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
-<div class="row">
+<body ng-app="myApp">
+<div class="row" ng-controller="myacccontroller">
 	<div class="col s4">
 		<div class="wra">
   <div class="contai">    
     <div class="contc">
       <div class="sub-contc">
         <h1>Manjunatha M S</h1>
-        <p>@mrmanjunathams</p>
+        <p>@{{datam.username}}</p>
       <br><br><br><br>
         <span class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>India</span>
         <br>
-        <a href="http://www.rogerfederer.com/">mrmanjunathams.bytes.com</a>
+        <a href="http://www.rogerfederer.com/">{{datam.email}}</a>
       </div>
       <div class="data">
         <div class="inner-data">

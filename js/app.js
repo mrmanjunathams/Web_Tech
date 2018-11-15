@@ -1,5 +1,4 @@
 var app =angular.module("myApp",["ngRoute"]);
-
 app.config(function($routeProvider){
     $routeProvider.when("/",{
       templateUrl:"templets/home.html"
@@ -17,11 +16,10 @@ app.config(function($routeProvider){
       controller: "SignupController",
       templateUrl:"templets/signup.html"
     }).when("/myacc",{
+      controller:"myacccontroller",
       templateUrl:"templets/card.html"
     }).when("/rewards",{
       templateUrl:"templets/timeline.html"
-    }).when("/pro",{
-      templateUrl:"templets/card.html"
     }).when("/cate",{
       controller: "catecontroller",
       templateUrl:"templets/cate.html"
@@ -32,8 +30,16 @@ app.config(function($routeProvider){
 
 });
 
+//-----------------------------session--------------------------
 
+app.controller("myacccontroller",function($scope,$http){                  //$scope is a application object
+  $http.get("http://localhost:3050/myacc").then(function(response){
+        $scope.datam=response.data;
+        console.log(response.data);
+      })
+});
 
+//+++++++++++++++++++blog======================
 
 app.controller("blogscontroller",function($scope,$http){                  //$scope is a application object
   $http.get("http://localhost:3050/blogs").then(function(response){
@@ -110,6 +116,7 @@ $http.post("http://localhost:3000/loginuser",data).then(function(response){
   console.log("inside post")
   console.log(response.data);
   });
+
 }
 });
 

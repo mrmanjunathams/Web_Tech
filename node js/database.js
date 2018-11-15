@@ -68,7 +68,15 @@ console.log("done");
     res.json(data);
   });
 });
-  
+
+//!!!!!!!!!!!!!!!!!!!!session!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  app.get("/myacc",function(req,res){
+  Sam1.findOne({username:"mrmanjunathams"},function(err,data){
+    console.log(data);
+    res.json(data);
+  });
+});
 
 //@@@@@@@@@@@@@@@@add blog@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -89,7 +97,7 @@ app.post('/addblog',ue,function(req, res) {
 app.listen(3020);
 console.log("server started at 3020");
 
-console.log("done");
+console.log("done"); 
 
 /*Login for user-----------------------------------------------------------------------------*/
 app.post('/loginuser',ue,function(req,res){
@@ -113,7 +121,6 @@ var username=req.body.username;
     req.session.username=req.body.username;
 console.log("-----session inside-----");
      console.log(req.session);
-
 
 
     console.log('success');
