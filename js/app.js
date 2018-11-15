@@ -26,6 +26,7 @@ app.config(function($routeProvider){
       controller: "catecontroller",
       templateUrl:"templets/cate.html"
     }).when("/writeblog",{
+
       templateUrl:"templets/write.html"
     });
 
@@ -60,6 +61,28 @@ $scope.submit=function(){
 }
 console.log(data);
 $http.post("http://localhost:3000/adduser",data).then(function(response){
+  console.log(response.data);
+  $location.path('/myacc');
+});
+
+
+}
+});
+
+
+app.controller("WBController",function($scope,$http,$location){
+  console.log("submit clicked");
+$scope.submit=function(){
+  let data={
+  "username" : $scope.username,
+  "categorie": $scope.categorie,
+  "date": $scope.password,
+  "img_name": $scope.img_name,
+  "blog_p1": $scope.blog_p1,
+  "blog_p2": $scope.blog_p2
+}
+console.log(data);
+$http.post("http://localhost:3020/addblog",data).then(function(response){
   console.log(response.data);
   $location.path('/myacc');
 });

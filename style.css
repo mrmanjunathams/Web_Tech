@@ -461,60 +461,6 @@ right: 0;
   animation-delay: 0.8s;
 }
 
-#write #blog #form label{
-  font-size: 20px;
-  margin: 0 0 0 3%;
-  color: #000;
-}
-
-#write #blog #form input{
-   display: block;
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  border: 2px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-  font-size: 15px;
-
-}
-
-#write #blog #form input:hover,#write #blog #form textarea:hover{
-  border: 2px solid #17bebb;
-}
-#blogwrite{
-  background:url(para/img1.jpg);
-}
-#write #blog #form textarea{
-  width: 100%;
-  height: 200px;
-  display: block;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  border: 2px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-  font-size: 15px;
-}
-
-#write #blog #form input[type="submit"]{
-  background-color: #17bebb;
-  color: white;
-  border: 2px solid #17bebb;
-}
-
-#write #blog #form input[type="submit"]:hover{
-  background: #ff0057;
-  border: 2px solid #ff0057;
-}
-#write{
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url(/home/silence/Downloads/img41.jpg);
-}
 
 @keyframes animate{
   0%{
@@ -528,4 +474,59 @@ right: 0;
   20.1%,100%{
     border-color: #222;
   }
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
+
+#write #blog  label{
+  font-size: 18px;
+  margin: % 0 0 1%;
+  color: #000;
+  font-family: 'Allerta Stencil', sans-serif;
+  text-transform: uppercase;
+}
+
+#write #blog  input{
+   display: block;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius:  5px;
+  outline: none;
+  font-size: 15px;
+  font-family: 'Allerta Stencil', sans-serif;
+
+}
+
+#write #blog input:hover,#write #blog  textarea:hover{
+  border: 2px solid #17bebb;
+}
+#blogwrite{
+  background:url(para/img1.jpg);
+}
+#write #blog  textarea{
+  width: 100%;
+  height: 200px;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 15px;
+}
+
+#write #blog  input[type="submit"]{
+  background-color: #17bebb;
+  color: white;
+  border: 2px solid #17bebb;
+}
+
+#write #blog  input[type="submit"]:hover{
+  background: #ff0057;
+  border: 2px solid #ff0057;
 }

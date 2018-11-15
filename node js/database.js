@@ -18,6 +18,21 @@ let sampleSchema=new mongoose.Schema({
 
 });
 let Sam1 = mongoose.model("user", sampleSchema);
+
+let sampleSchema2=new mongoose.Schema({
+
+  username:String,
+  email:String,
+  password:String,
+  date:String,
+  categorie:String,
+  img_name:String,
+  blog_p1:String,
+  blog_p2:String
+
+});
+
+let BAdd = mongoose.model("blog", sampleSchema2);
 /*-------------------------------------------------------------------------------*/
 
 app.use(function(req, res, next) {
@@ -42,11 +57,31 @@ app.post('/adduser',ue,function(req, res) {
   });
 });
 app.listen(3000);
-console.log("server started");
+console.log("server started at 3000");
 
 console.log("done");
 
 
+//@@@@@@@@@@@@@@@@add blog@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+app.get("/BAdd",function(req,res){
+  BAdd.find({},function(err,data){
+    console.log(data);
+    res.json(data);
+  });
+});
+
+app.post('/addblog',ue,function(req, res) {
+  console.log(req.body);
+  Sam1(req.body).save(function(err,data){
+    res.json(data);
+  });
+});
+app.listen(3020);
+console.log("server started at 3020");
+
+console.log("done");
 
 /*Login for user-----------------------------------------------------------------------------*/
 app.post('/loginuser',ue,function(req,res){
