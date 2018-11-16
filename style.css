@@ -334,14 +334,14 @@ right: 0;
   font-size: 22px;
 }
 .parallax.s1{
-   background-image: url('para/img25.jpg');
-    height: 100%;
+   background-image: url('picyourpic/img20.jpg');
+    
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
   background-size: cover;
 }
-.parallax.s1 a, .join .sub-join a{
+.parallax.s1 a, .join .sub-join a,.parallax.s3 a{
   background-color: #fff;
   border: 1px solid gray;
   color: gray;
@@ -357,7 +357,7 @@ right: 0;
   font-size: 13px;
   margin-left: 4%;
 }
-.parallax.s1 a:hover,.join .sub-join a:hover{
+.parallax.s1 a:hover,.join .sub-join a:hover,.parallax.s3 a:hover{
   color: #fff;
   background-color: #17bebb;
   border: 1px solid #17bebb;
