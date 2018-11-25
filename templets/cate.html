@@ -120,7 +120,24 @@
 </tbody>
 </table>
     	</div>
-    	<div class="col s2"><br><br>
+    	<div id="pick" class="col s2"><br><br>
+        <script>
+          $('.dropdown-trigger').dropdown();
+        </script>
+
+          <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' ng-model="search"  data-target='dropdown1'>PICK A CATEGORIES</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' style="text-align: center;" class='dropdown-content'>
+             <li><a name="Art | Vacation" value="Art | Vacation" >Art | Vacation</a></li>
+             <li><a href="#!">Home | Office</a></li>
+             <li><a href="#!">Art | Record</a></li>
+             <li><a href="#!">Travel | Animals</a></li>
+             <li><a href="#!">See | Ocean</a></li>
+             <li><a href="#!">Women | Female</a></li>
+          </ul>
+
     		<h6 style="color:#17bebb;"><b>________</b></h6>
         	<h5>Recent Post</h5>
         	<div class="recent"><br>
