@@ -634,3 +634,23 @@ right: 0;
      margin: -10px 0 0 -10px;
      pointer-events: none;
 }
+
+#pick #a a{
+  display: inline-block;
+  padding: 5px 20px;
+  color:#17bebb;
+  background: #fff;
+  border: 1px solid #17bebb;
+  border-radius: 25px; 
+  text-decoration: none;
+  margin-left: 25%;
+}
+#pick #a a:hover{
+  display: inline-block;
+  padding: 5px 20px;
+  color:#fff;
+  background: #15bebb;
+  border: 1px solid #17bebb;
+  border-radius: 25px; 
+  text-decoration: none;
+}
