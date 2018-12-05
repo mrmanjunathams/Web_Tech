@@ -18,20 +18,31 @@
    <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
    <script src="js/app.js"></script>
-
-
-   <script type="text/javascript">
+    <script type="text/javascript">
      $(document).ready(function(){
-    $("#bbb1").click(function(){
+    $("#signu").click(function(){
         $("#acc").attr("href", "#!myacc");
     });
 });
      $(document).ready(function(){
-    $("#bbb2").click(function(){
+    $("#signi").click(function(){
         $("#acc").attr("href", "#!myacc");
     });
 });
    </script>
+
+   <script type="text/javascript">
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+  </script>
   </head>
   <body ng-app="myApp" style="font-family: 'Ubuntu', sans-serif;">
     <nav class="main">
@@ -49,44 +60,23 @@
      </ul>
    </div>
  </nav>
-
- <ul class="sidenav" id="mobile-demo">
-   <li><a href="#!">HOME</a></li>
-   <li><a href="#!blog">BLOG</a></li>
-   <li><a href="#!lifestyle">LIFESTYLE</a></li>
-   <li><a href="#!travel">TRAVELS</a></li>
-   <li><a href="#!gallery">GALLERY</a></li>
-   <li><a href="#!aboutme">ABOUT US</a></li>
-   <li> <a class="modal-trigger" href="#modal1">Modal</a></li>
- </ul>
-
+ 
  <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Sign In | Sign Up</h4>
       <p style="text-align:center;">If you already have account please Sign In.<br> If you are new user please Sign Up</p>
       <div class="row">
         <div class="col s2">
-          <a id="bbb1" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!signup" class="waves-effect waves-light btn">Sign Up</a>
+          <a id="signu" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!signup" class="waves-effect waves-light btn">Sign Up</a>
         </div>
         <div class="col s8">.</div>
         <div class="col s2">
-          <a id="bbb2" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!login" class="waves-effect waves-light btn">Sign In</a>
+          <a id="signi" style="background:#17bebb; border-radius: 25px; border:2px solid #17bebb; color:#ffffff;" href="#!login" class="waves-effect waves-light btn">Sign In</a>
         </div>
      </div>
     </div>
   </div>
-  <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
- var elems = document.querySelectorAll('.modal');
- var instances = M.Modal.init(elems, options);
-});
-
-// Or with jQuery
-
-$(document).ready(function(){
- $('.modal').modal();
-});
-  </script>
+  
 
  <div class="ng-view"></div>
     <div class="footer">
@@ -161,48 +151,5 @@ $(document).ready(function(){
         </div><br><br>
       </div>
     </div>
-    <script type="text/javascript">
-
-     var $ = document.querySelector.bind(document);
-     var $on = document.addEventListener.bind(document);
-
-     var xmouse, ymouse;
-     $on('mousemove', function (e) {
-          xmouse = e.clientX || e.pageX;
-          ymouse = e.clientY || e.pageY;
-     });
-
-     var ball = $('#ball');
-     var x = void 0,
-          y = void 0,
-          dx = void 0,
-          dy = void 0,
-          tx = 0,
-          ty = 0,
-          key = -1;
-
-     var followMouse = function followMouse() {
-          key = requestAnimationFrame(followMouse);
-
-          if(!x || !y) {
-               x = xmouse;
-               y = ymouse;
-          } else {
-               dx = (xmouse - x) * 0.125;
-               dy = (ymouse - y) * 0.125;
-               if(Math.abs(dx) + Math.abs(dy) < 0.1) {
-                    x = xmouse;
-                    y = ymouse;
-               } else {
-                    x += dx;
-                    y += dy;
-               }
-          }
-          ball.style.left = x + 'px';
-          ball.style.top = y + 'px';
-     };
-
-     </script>
-
   </body>
 </html>
