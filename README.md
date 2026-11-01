@@ -2,9 +2,11 @@
 
 Where bloggers can write their own blogs and post them on Bloggerbytes.
 
-**Highlights:** Ctrl/⌘+K command palette · two-pane editor with live preview, visual cover picker and auto-saved drafts ·
+**Highlights:** rich-text writing studio (headings, lists, quotes, code, links; keyboard and Markdown-style shortcuts) ·
+drafts that save themselves · scheduled publishing · edit, unpublish or delete any story · display names ·
 story reader with reading progress, likes and sharing · Explore with instant search, topic chips and sorting ·
-writer leaderboard · Image Pool lightbox · personal dashboard · light/dark themes · animated page transitions.
+writer leaderboard · Image Pool lightbox · dashboard with Published / Scheduled / Drafts · Ctrl/⌘+K command palette ·
+light/dark themes · Flutter app for Android and iOS with the same features.
 
 | Part | Stack | Folder |
 | --- | --- | --- |
@@ -37,6 +39,8 @@ cp backend/.env.example backend/.env   # optional for dev, required for real dat
 | `npm run build` | Production build of the frontend into `frontend/dist/frontend/browser` |
 | `npm start` | Backend serving the API **and** the built frontend on one port (http://localhost:3000) |
 | `npm test` | Backend API tests (in-memory MongoDB) |
+| `npm --prefix backend run test:coverage` | Same, failing below 100% line/branch/function coverage |
+| `npm --prefix frontend run test:coverage` | Web app unit tests (Vitest), failing below 100% coverage |
 
 Custom ports: `BACKEND_PORT=3001 FRONTEND_PORT=4201 MONGO_PORT=27018 npm run dev`.
 
@@ -54,12 +58,14 @@ Frontend routes use hash URLs (`/#/blog`, `/#/cate`) so they never clash with AP
 | --- | --- | --- | --- |
 | GET | `/blogs` | - | Featured blogs (static JSON) |
 | GET | `/BAdd` | - | All published blogs, newest first |
-| POST | `/adduser` | - | Sign up `{username, email, password}` and start a session |
+| POST | `/adduser` | - | Sign up `{username, name, email, password}` and start a session (`name` = display name, 1-60 chars) |
 | POST | `/loginuser` | - | Sign in `{username, password}` |
 | POST | `/logout` | - | End the session |
-| GET | `/myacc` | yes | Current user and their blogs |
-| POST | `/addblog` | yes | Publish `{title, cate, date, img, blogp1, blogp2}`. `img` is an Image Pool name such as `img5` |
-| GET | `/posts/:id` | - | One story (counts a view); featured ones are `featured-<no>` |
+| GET | `/myacc` | yes | Current user and all their blogs, drafts and scheduled ones included |
+| PATCH | `/myacc` | yes | Change your display name `{name}` |
+| POST | `/addblog` | yes | `{title, cate, img, blogp1, blogp2, status?, publishAt?}`: publish now, schedule (future `publishAt`) or save a draft (`status: "draft"`, may be incomplete). `blogp2` is HTML (sanitized); `img` is an Image Pool name such as `img5` |
+| GET | `/posts/:id` | - | One story (counts a view); featured ones are `featured-<no>`; drafts and scheduled stories only for their author |
+| PATCH | `/posts/:id` | author | Edit content, publish, move back to drafts or reschedule |
 | POST | `/posts/:id/like` | yes | Toggle your like → `{likes, liked}` |
 | DELETE | `/posts/:id` | author | Delete your own story |
 | GET | `/stats` | - | Site totals: blogs, writers, categories, likes |
@@ -81,8 +87,9 @@ flutter run --dart-define=API_BASE_URL=https://api.example.com   # any other API
 
 GitHub Actions run on every push and pull request that touches the relevant folders:
 
-- [`api.yml`](.github/workflows/api.yml): backend tests on Node 22 and 24, a smoke test that boots the server, then packages the API (`bloggerbytes-api.tar.gz` artifact).
-- [`mobile.yml`](.github/workflows/mobile.yml): Flutter format/analyze/tests, a contract test of the app against the real API, then release APK and web builds (artifacts). Set the repository variable `API_BASE_URL` to bake your deployed API into those builds.
+- [`api.yml`](.github/workflows/api.yml): backend tests on Node 22 and 24 with a 100% coverage gate, a smoke test that boots the server, then packages the API (`bloggerbytes-api.tar.gz` artifact).
+- [`frontend.yml`](.github/workflows/frontend.yml): web app unit tests with a 100% coverage gate, then the production build (artifact).
+- [`mobile.yml`](.github/workflows/mobile.yml): Flutter format/analyze/tests with a 100% line-coverage gate, a contract test of the app against the real API, then release APK and web builds (artifacts). Set the repository variable `API_BASE_URL` to bake your deployed API into those builds.
 
 ## Configuration (`backend/.env`)
 

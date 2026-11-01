@@ -38,7 +38,7 @@ Report/               original project report (PDF), not code
 
 - `npm run install:all` — install both packages (there are no root dependencies)
 - `npm run dev` — persistent local MongoDB :27017 + backend :3000 + `ng serve` :4200. `-- --memory` for a throwaway DB, `-- --no-db` to use `MONGODB_URI` from `backend/.env` as-is
-- `npm test` — backend tests; always run after backend changes
+- `npm test` — backend tests; always run after backend changes. **Coverage is gated at 100% in all three parts** (CI fails otherwise): `npm --prefix backend run test:coverage`, `npm --prefix frontend run test:coverage`, and in `mobile/` `flutter test --coverage --exclude-tags backend && dart run tool/check_coverage.dart`. New code needs tests.
 - `npm run build` — frontend production build (type-checks templates, checks the icon font list)
 - `npm start` — backend serving API + `frontend/dist/frontend/browser`
 - In `mobile/`: `flutter analyze` and `flutter test` (skips the live-API test); `BACKEND_URL=http://localhost:3100 flutter test --tags backend` against `PORT=3100 npm --prefix backend run dev:memory`. Run after mobile or API changes
@@ -46,12 +46,15 @@ Report/               original project report (PDF), not code
 
 ## Conventions and gotchas
 
-- **API paths are unprefixed and public contract**: `/blogs`, `/cate`, `/BAdd`, `/posts/:id` (GET, DELETE), `/posts/:id/like`, `/adduser`, `/loginuser`, `/logout`, `/myacc`, `/addblog`, `/subscribe`, `/stats`, `/leaderboard`, `/health`. A new path must also go in `frontend/proxy.conf.mjs`, and must not be a prefix of a static folder (an `/images` endpoint once hijacked `/images/*.png` in dev).
+- **API paths are unprefixed and public contract**: `/blogs`, `/cate`, `/BAdd`, `/posts/:id` (GET, PATCH, DELETE), `/posts/:id/like`, `/adduser`, `/loginuser`, `/logout`, `/myacc` (GET, PATCH), `/addblog`, `/subscribe`, `/stats`, `/leaderboard`, `/health`. A new path must also go in `frontend/proxy.conf.mjs`, and must not be a prefix of a static folder (an `/images` endpoint once hijacked `/images/*.png` in dev).
 - **Hash routing** (`withHashLocation`) is deliberate: the page `/#/cate` and the API `/cate` would clash otherwise.
 - **Zoneless Angular**: state the template reads must be a signal, or call `ChangeDetectorRef.markForCheck()` after changing it from a non-Angular callback.
 - **`inject()` only before the first `await`** in guards/functions (NG0203 otherwise) — see `core/auth.guard.ts`.
 - Frontend API calls use paths starting with `/` (`'/myacc'`); `apiInterceptor` adds `environment.apiBaseUrl` and `withCredentials`. Asset fetches use relative paths (`picyourpic/manifest.json`) and are left alone.
 - Auth is cookie sessions (`bb.sid`). `/myacc` returns 401 when signed out; `Auth.load()` turns that into `user() === null`.
+- Users have a display `name` (required at sign-up, 1-60 chars; empty for pre-2026 accounts, so clients show `name || username`). Blogs carry `authName` for display; `auth` stays the username (identity, ownership, likes).
+- **Stories**: `status` is `draft` | `published`; `publishAt` in the future = scheduled. Visibility is computed per request (`liveFilter()` / `statusOf()` in models.js) — every public query must use `liveFilter()`; drafts/scheduled are visible only to their author. Validation lives in `blogFields()` (drafts may be incomplete). `blogp2` is HTML: sanitized by `content.js` on write (allowlist) and plain-text legacy bodies become `<p>` on read; `blogp1` stays plain text (the excerpt). Old docs are upgraded by `migrateBlogs()` at start-up.
+- The studio (`pages/write.ts`) is reused by the router when only the query changes (`?id=`); it follows `queryParamMap` and saves/asks before switching stories. Leaving is guarded by `canLeave()`.
 - Blogs: author comes from the session, never the body. `img` is a picture name (no extension) from `frontend/public/picyourpic`; a backend test asserts `manifest.json` matches that folder. Never expose `likedBy` — use `serializeBlog()` (gives `likes` + `liked`). Dates are display strings like `01-NOV-2026`. Featured blogs have ids `featured-<no>` and cannot be liked.
 - **Images**: always render via `imageUrl(name, 'sm' | 'lg')` (web-sized webp), never the multi-MB originals. Builds exclude originals and the unused 2018 media (`videos/`, `para/`, `bgs/`) — see `angular.json` assets.
 - **Icons**: Material Symbols via `<span class="ms">name</span>`. The font in `src/index.html` is subset with `icon_names=` (alphabetical); `scripts/check-icons.mjs` fails the build and prints the list to use if a new icon is missing.

@@ -22,8 +22,9 @@ async function start(mongoUri = MONGODB_URI, port = PORT, onClose) {
 
   const sessionStore = MongoStore.create({ client: mongoose.connection.getClient(), collectionName: 'sessions' });
   const app = createApp({ sessionStore });
-  const server = await new Promise((resolve) => {
-    const s = app.listen(port, () => resolve(s));
+  // Express 5 passes listen errors (e.g. port in use) to this callback.
+  const server = await new Promise((resolve, reject) => {
+    const s = app.listen(port, (err) => (err ? reject(err) : resolve(s)));
   });
   console.log(`Bloggerbytes running at http://localhost:${server.address().port}`);
 
@@ -44,7 +45,11 @@ async function start(mongoUri = MONGODB_URI, port = PORT, onClose) {
 function main() {
   return start().catch((err) => {
     console.error('Failed to start server:', err.message);
-    console.error('Is MongoDB running? Set MONGODB_URI in .env, or run "npm run dev:memory".');
+    if (err.code === 'EADDRINUSE') {
+      console.error(`Port ${PORT} is already in use. Stop the other server, or set PORT to another port.`);
+    } else {
+      console.error('Is MongoDB running? Set MONGODB_URI in .env, or run "npm run dev:memory".');
+    }
     process.exit(1);
   });
 }

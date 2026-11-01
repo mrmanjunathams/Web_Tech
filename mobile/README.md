@@ -13,9 +13,9 @@ Flutter port of the Angular web app (`../frontend`). It runs on Android, iOS and
 | `/rewards` | Leaderboard | Podium (top 3), ranking list with you highlighted, badges |
 | `/gallery` | Image Pool | Grid of covers, full-screen lightbox (swipe, arrows, keyboard), "Write with this" |
 | `/aboutme` | About | Mission, timeline, contact email |
-| `/login`, `/signup` | Auth | Validation matching the API, show/hide password, strength meter |
-| `/myacc` | Dashboard | Profile, stat tiles, your stories with delete (confirm dialog), log out |
-| `/writeblog?img=` | Studio | Title, date picker, topics with suggestions, cover picker, live preview + checklist, auto-saved draft, publish |
+| `/login`, `/signup` | Auth | Display name + username, validation matching the API, show/hide password, strength meter |
+| `/myacc` | Dashboard | Profile with editable display name, stat tiles, Published / Scheduled / Drafts tabs with edit and delete, log out |
+| `/writeblog?id=&img=` | Studio | Rich-text editor (flutter_quill: headings, lists, quotes, code, links, undo), cover picker, topics with suggestions, checklist and card preview, preview mode, drafts that autosave (on the device until first saved, then to the server), publish now or schedule (date and time pickers), update, move to drafts, delete; asks before leaving unsaved edits |
 
 Everywhere else: a search palette (pages, actions, stories), light/dark theme saved on the device, toasts, the newsletter sign-up and footer links, and pull-to-refresh. Lists refresh by themselves after you publish, like or delete. `/myacc` and `/writeblog` need you to be signed in, as on the web. The session (`bb.sid` cookie) is stored on the device, so you stay signed in between launches.
 
@@ -60,7 +60,8 @@ The release APK is signed with the debug key (Flutter's default). Set up your ow
 
 ```bash
 flutter analyze
-flutter test                     # unit + widget tests against an in-memory fake of the API
+flutter test --coverage --exclude-tags backend   # unit + widget tests against an in-memory fake of the API
+dart run tool/check_coverage.dart               # fails below 100% line coverage of lib/ (as CI does)
 
 # Contract test against the real API (what CI runs):
 PORT=3100 npm --prefix ../backend run dev:memory &

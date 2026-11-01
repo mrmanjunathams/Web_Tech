@@ -73,6 +73,32 @@ test('start() connects, seeds, migrates, listens, and shuts down on SIGTERM', as
   }
 });
 
+test('start() rejects when the port is already in use, and main() says so', async () => {
+  const { start, main } = require('../src/index');
+  const mongod = await MongoMemoryServer.create();
+  const blocker = net.createServer();
+  await new Promise((r) => blocker.listen(0, r));
+  try {
+    await quietly(async () => {
+      await assert.rejects(start(mongod.getUri('bb-busy'), blocker.address().port), { code: 'EADDRINUSE' });
+    });
+    const errors = [];
+    const busy = Object.assign(new Error('listen EADDRINUSE'), { code: 'EADDRINUSE' });
+    const codes = await exits(() =>
+      stubbed(console, 'error', (...a) => errors.push(a.join(' ')), () =>
+        stubbed(mongoose, 'connect', async () => { throw busy; }, main)
+      )
+    );
+    assert.deepEqual(codes, [1]);
+    assert.match(errors.join('\n'), /already in use/);
+  } finally {
+    blocker.close();
+    await settle(); // let the session store finish its start-up work
+    await mongoose.disconnect();
+    await mongod.stop();
+  }
+});
+
 test('main() reports a database it cannot reach and exits with 1', async () => {
   const { main } = require('../src/index');
   const codes = await quietly(() =>
