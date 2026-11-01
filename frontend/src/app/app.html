@@ -1,0 +1,115 @@
+<nav class="main navbar navbar-expand-lg sticky-top shadow-sm p-0">
+  <div class="nav-wrapper container-fluid">
+    <a routerLink="/" class="navbar-brand brand-logo ms-3"><img src="images/logoalt.png" alt="Bloggerbytes"></a>
+    <button type="button" class="navbar-toggler border-0 d-lg-none" aria-label="Open menu" (click)="menu.show()">
+      <i class="material-icons align-middle">menu</i>
+    </button>
+    <ul class="navbar-nav ms-auto d-none d-lg-flex">
+      <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">HOME</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/blog" routerLinkActive="active">BLOG</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/cate" routerLinkActive="active">CATEGORY</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/rewards" routerLinkActive="active">REWARDS</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/gallery" routerLinkActive="active">IMAGE POOL</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/aboutme" routerLinkActive="active">ABOUT US</a></li>
+      @if (auth.user()) {
+        <li class="nav-item"><a id="acc" class="nav-link" routerLink="/myacc" routerLinkActive="active">MY ACCOUNT</a></li>
+        <li class="nav-item"><a class="nav-link" href="" (click)="$event.preventDefault(); logout()">LOG OUT</a></li>
+      } @else {
+        <li class="nav-item"><a id="acc" class="nav-link" href="" (click)="$event.preventDefault(); accountModal.show()">MY ACCOUNT</a></li>
+      }
+    </ul>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div #menuEl class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu" aria-labelledby="mobile-menu-title">
+  <div class="offcanvas-header">
+    <img id="mobile-menu-title" src="images/logoalt.png" alt="Bloggerbytes" height="48">
+    <button type="button" class="btn-close" aria-label="Close" (click)="menu.hide()"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      @for (link of links; track link.path) {
+        <a class="list-group-item list-group-item-action" href="" (click)="$event.preventDefault(); go(link.path)">{{ link.label }}</a>
+      }
+      @if (auth.user()) {
+        <a class="list-group-item list-group-item-action" href="" (click)="$event.preventDefault(); go('/myacc')">MY ACCOUNT</a>
+        <a class="list-group-item list-group-item-action" href="" (click)="$event.preventDefault(); logout()">LOG OUT</a>
+      } @else {
+        <a class="list-group-item list-group-item-action" href="" (click)="$event.preventDefault(); go('/login')">SIGN IN</a>
+        <a class="list-group-item list-group-item-action" href="" (click)="$event.preventDefault(); go('/signup')">SIGN UP</a>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Sign in / sign up chooser -->
+<div #modalEl id="modal1" class="modal fade" tabindex="-1" aria-labelledby="modal1-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content p-3">
+      <div class="modal-header border-0">
+        <h4 id="modal1-title" class="modal-title w-100">Sign In | Sign Up</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="accountModal.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <p style="text-align:center;">If you already have account please Sign In.<br> If you are new user please Sign Up</p>
+        <div class="d-flex justify-content-between">
+          <a id="signu" class="btn btn-bb rounded-pill px-4" href="" (click)="$event.preventDefault(); go('/signup')">Sign Up</a>
+          <a id="signi" class="btn btn-bb rounded-pill px-4" href="" (click)="$event.preventDefault(); go('/login')">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="view">
+  <router-outlet />
+</main>
+
+<div class="footer">
+  <h5><b>TELEGRAM</b></h5>
+  <div class="row g-0">
+    @for (img of ['img7', 'img2', 'img4', 'img5', 'img6', 'img3']; track img) {
+      <div class="col col-4 col-md-2 px-1">
+        <img [src]="'images/' + img + '.jpg'" alt="img" class="w-100" style="height:195px;object-fit:cover">
+      </div>
+    }
+  </div>
+  <div class="row">
+    <div class="col col-12 col-md-4">
+      <h6><b>NAVIGATIONS</b></h6>
+      <div class="nav d-block"><br>
+        <a routerLink="/"><i class="material-icons">check</i>HOME</a><br>
+        <a routerLink="/aboutme"><i class="material-icons">check</i>ABOUT ME</a><br>
+        <a routerLink="/blog"><i class="material-icons">check</i>BLOG</a><br>
+        <a routerLink="/cate"><i class="material-icons">check</i>LIFESTYLE</a><br>
+        <a routerLink="/gallery"><i class="material-icons">check</i>GALLERY</a><br>
+        <a routerLink="/myacc"><i class="material-icons">check</i>MY ACCOUNT</a>
+      </div>
+    </div>
+    <div class="col col-12 col-md-4">
+      <h6><b>RECENT POST</b></h6>
+      <p style="color:gray; font-family: sans-serif; font-size:13px;">22-OCT-2018</p>
+      <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">The Most Popular Leg Workout for Men</p>
+      <p style="color:gray; font-family: sans-serif; font-size:13px;">30-OCT-2018</p>
+      <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Popular Lifestyle with Fashion &amp; Modeling</p>
+      <p style="color:gray; font-family: sans-serif; font-size:13px;">31-OCT-2018</p>
+      <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Video Post Travel with my Friends</p>
+      <p style="color:gray; font-family: sans-serif; font-size:13px;">01-NOV-2018</p>
+      <p style="color:black; font-family: sans-serif; font-size:18px;line-height:0.5px;">Popular Lifestyle with Fashion &amp; Modeling</p>
+    </div>
+    <div class="col col-12 col-md-4">
+      <h6><b>TAGS</b></h6>
+      <div class="tags">
+        @for (tag of tags; track tag) {
+          <a routerLink="/cate" [queryParams]="{ q: tag }" class="btn btn-bb"><i class="material-icons align-middle me-1">local_offer</i>{{ tag }}</a>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="row"><br><br><br>
+    <div class="col col-12">
+      <p style="text-align: center; font-size:12px;">Copyright © 2018 All rights reserved.Proudly buit by <b>Manjunatha M S.</b></p>
+    </div><br><br>
+  </div>
+</div>

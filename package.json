@@ -1,22 +1,27 @@
 {
   "name": "web_tech",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Bloggerbytes - where bloggers write and publish their own blogs",
+  "private": true,
+  "engines": {
+    "node": ">=22.22"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev:memory",
+    "dev:frontend": "npm --prefix frontend start",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend start",
+    "test": "npm --prefix backend test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrmanjunathams/Web_Tech.git"
   },
-  "author": "",
+  "author": "Manjunatha M S",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mrmanjunathams/Web_Tech/issues"
   },
-  "homepage": "https://github.com/mrmanjunathams/Web_Tech#readme",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "homepage": "https://github.com/mrmanjunathams/Web_Tech#readme"
 }

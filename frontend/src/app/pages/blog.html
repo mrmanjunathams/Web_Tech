@@ -1,0 +1,120 @@
+<div class="bl"><br>
+    <div class="title">
+      <br><h4>Read our blogs</h4><br>
+    </div>
+    <h4 style="font-family: 'Fjalla One', sans-serif;">TRANDING ON BLOGGERBYTES</h4>
+    <div class="row" id="row" style="margin: 0;padding:0"><br><br><br>
+      <div class="col col-1"></div>
+      <div class="col col-7" style="background:#f5fff5">
+       @if (error()) { <p class="text-danger">{{ error() }}</p> }
+       @for (d of blogs(); track $index; let i = $index) {
+       <table>
+          <tbody>
+            <tr>
+              <td>
+        <h6 style="color:#17bebb;">{{ d.cate }}</h6>
+        <p style="line-height: 0px;font-size:10px;font-family: 'Fjalla One', sans-serif;color: gray; text-align: center;"><i class="fa fa-calendar"></i> {{ d.date }}</p>
+        <h5>{{ d.title }}</h5>
+        <figure>
+          <img [src]="'picyourpic/' + d.img + '.jpg'" [alt]="d.title" style="width:100%">
+          <figcaption style="margin-left:44%; color:#17bebb; font-size:16px;font-family: 'Fjalla One', sans-serif;"><i class="fa fa-user"></i> By {{ d.auth }}</figcaption>
+        </figure>
+        <p style="text-align:justify;">{{ d.blogp1 }}</p>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" [id]="'more-' + i" [checked]="expanded().has(i)" (change)="toggle(i)">
+          <label class="form-check-label" [for]="'more-' + i">READ MORE ABOUT IT</label>
+        </div>
+        @if (expanded().has(i)) {
+          <div><p style="text-align:justify;">{{ d.blogp2 }}</p></div>
+        }
+  </td>
+ </tr>
+</tbody>
+</table>
+       }
+      </div>
+      <div class="col col-4" id="row">
+
+        <div class="aboutme"><br><br>
+          <h6 style="color:#17bebb;"><b>________</b></h6>
+          <h5>About Us</h5>
+          <div class="parallax s5">
+           <h4 style="color: white;font-family: 'Lobster', cursive;">Bloggerbytes</h4>
+          </div>
+          <h6 style="text-align: justify; font-size: 18px;font-family: 'Varela Round', sans-serif;">At Bloggerbytes, we believe there is a better way to do market or express yourself is important. A more valuable, less invasive way where peoples are sharing of information rather than searching. We're obsessively passionate about it, and our mission is to help people achieve it. We focus on varies categories of blogs like art, sciencs, travelling...etc. It's one of the least understood and least transparent aspects of great blogger, and we see that as an opportunity: We're excited to simplify blogging for everyone through our application.</h6>
+          
+           <div class="parallax s6">
+      <h4 style="color: white;font-family: 'Lobster', cursive;">Contact Us</h4>
+        <a target="_blank" href="https://www.facebook.com/Bloggerbytes-319605895260048/" class="btn-floating" style="margin-left: 26%;font-family: 'Fjalla One', sans-serif;border:2px solid #fff;"><i style="color: black;" class="fa fa-facebook"></i></a>
+    <a target="_blank" href="https://twitter.com/bloggerbytes" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-twitter"></i></a>
+    <a target="_blank" href="https://t.me/bloggerbytes" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-telegram"></i></a>
+    <a target="_blank" href="mailto:bloggerbytesinfo@gmail.com?subject=Hello%20Bloggerbytes" class="btn-floating" style="border:2px solid #fff;font-family: 'Fjalla One', sans-serif;"><i style="color: black;" class="fa fa-envelope"></i></a>
+      <br><br>
+    </div>
+        </div><br><br><br>
+         <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Recent Post</h5>
+        <div class="recent"><br>
+          <img src="images/img3.jpg" alt="img" width="35%" height="23%">
+          <p style="margin:-25% 0 0 50%;"><i class="fa fa-calendar"></i> 22-OCT-2018</p>
+          <p style="margin:0 10% 0 50%; font-size:18px;">The Most Popular Leg Workout for Men</p>
+        </div>
+        <div class="recent"><br>
+          <img src="images/img4.jpg" alt="img" width="35%" height="23%">
+          <p style="margin:-25% 0 0 50%;"><i class="fa fa-calendar"></i> 22-OCT-2018</p>
+          <p style="margin:0 10% 0 50%; font-size:18px;">The Most Popular Leg Workout for Men</p>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Categories</h5>
+        <div class="cat" id="col">
+          <a routerLink="/cate"><i class="material-icons">check</i>Blog</a><br>
+          <p style="text-align:center;line-height:0px;">--------------------------------------</p>
+          <a routerLink="/cate"><i class="material-icons">check</i>Life Style</a><br>
+          <p style="text-align:center; line-height:0px;">--------------------------------------</p>
+          <a routerLink="/cate"><i class="material-icons">check</i>Travel</a><br>
+          <p style="text-align:center;line-height:0px;">--------------------------------------</p>
+          <a routerLink="/cate"><i class="material-icons">check</i>Fashion</a><br>
+        </div><br><br><br>
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Video Post</h5><br>
+        <video class="w-100" controls>
+          <source src="videos/vid.mp4" type="video/mp4">
+        </video>
+              </div>
+    </div>
+
+    <div class="row" id="row" style="margin:0;;padding:0"><br><br><br>
+      <div class="col col-1">
+        <a class="btn-floating"><i class="fa fa-share-alt"></i></a><br>
+        <a class="btn-floating"><i class="fa fa-facebook-f"></i></a><br>
+        <a class="btn-floating"><i class="fa fa-twitter"></i></a><br>
+        <a class="btn-floating"><i class="fa fa-google-plus"></i></a><br>
+      </div>
+      <div class="col col-7" style="background:#f5fff5">
+        <h6 style="color:#17bebb;">TechByte | Racing</h6>
+        <h5>Racing Set-Up for the new ZB Commodore in V8 Super Car Racing</h5>
+        <video class="w-100" controls>
+          <source src="videos/vid.mp4" type="video/mp4">
+        </video>
+        <h6><i class="fa fa-calendar"></i> 22-OCT-2018 | <i class="fa fa-user"></i> By Manjunatha</h6>
+              <p style="text-align:justify;">Speedcafe.com reports that Holden teams in the 2018 Virgin Australia Supercars Championship believe there is more performance to come from the ZB Commodore, as they begin to understand and develop the brand-new car.
+
+The car is very good straight off.  Holden teams have won seven of the eight races and claimed a clean sweep of fastest laps.
+
+Speedcafe interviewed Brad Jones from Brad Jones Racing and Mark Dutton from Triple Eight Racing.<br>
+
+    </p>
+      </div>
+      <div class="col col-4" id="col">
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Blockquote</h5>
+        <p style="margin:0 12% 0 12%; text-align:justify;">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around</p>
+        <br><br>
+        <h6 style="color:#17bebb;"><b>________</b></h6>
+        <h5>Subscribe to our newsletter</h5>
+        <app-newsletter />
+      </div>
+    </div><br><br>
+     <br>
+  </div>

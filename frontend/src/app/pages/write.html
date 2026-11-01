@@ -1,0 +1,42 @@
+  <div class="row">
+    <div class="col col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 style="text-align: center;font-family: 'Allerta Stencil', sans-serif;text-transform: uppercase;" class="card-title">Write a blog about thing which inspires you</h5>
+           <div id="write"><br>
+    <form id="blog" class="row" #f="ngForm" (ngSubmit)="submit()" novalidate>
+      <div class="col col-12">
+        <label for="title">Title of Blog</label>
+      <input type="text" id="title" name="title" [(ngModel)]="blog.title" required maxlength="200" placeholder="enter your blog title" />
+      </div>
+    <div class="col col-12 col-md-3">
+      <label for="blogger_name">Your username</label>
+      <input type="text" id="blogger_name" name="auth" [value]="auth.user()?.username ?? ''" disabled />
+    </div>
+    <div class="col col-12 col-md-3">
+      <label for="cate">Categories</label>
+      <input type="text" id="cate" name="cate" [(ngModel)]="blog.cate" required maxlength="100" placeholder="e.g. Travel | Vacation" />
+    </div>
+    <div class="col col-12 col-md-3">
+      <label for="date">Date to show</label>
+       <input type="date" id="date" name="date" [(ngModel)]="blog.date" required />
+    </div>
+    <div class="col col-12 col-md-3">
+      <label for="img_name">Image name from our <a routerLink="/gallery">Image Pool</a></label>
+      <input type="text" id="img_name" name="img_name" [(ngModel)]="blog.img" required placeholder="e.g. img5" />
+    </div>
+    <div class="col col-12">
+
+      <label for="blog_p1">Blog (Paragraph one)</label>
+      <textarea placeholder="enter paragraph" [(ngModel)]="blog.blogp1" required id="blog_p1" name="blog_p1"></textarea>
+      <label for="blog_p2">Blog (Paragraph two)</label>
+      <textarea placeholder="enter paragraph" id="blog_p2" [(ngModel)]="blog.blogp2" required name="blog_p2"></textarea><br><br>
+      @if (error()) { <p class="text-danger">{{ error() }}</p> }
+      <input type="submit" id="post" name="post" [value]="loading() ? 'POSTING...' : 'POST YOUR BLOG'" [disabled]="f.invalid || loading()"/>
+    </div>
+    </form>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
