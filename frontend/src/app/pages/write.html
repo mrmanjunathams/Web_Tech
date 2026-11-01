@@ -1,42 +1,180 @@
-  <div class="row">
-    <div class="col col-12">
-      <div class="card">
-        <div class="card-body">
-          <h5 style="text-align: center;font-family: 'Allerta Stencil', sans-serif;text-transform: uppercase;" class="card-title">Write a blog about thing which inspires you</h5>
-           <div id="write"><br>
-    <form id="blog" class="row" #f="ngForm" (ngSubmit)="submit()" novalidate>
-      <div class="col col-12">
-        <label for="title">Title of Blog</label>
-      <input type="text" id="title" name="title" [(ngModel)]="blog.title" required maxlength="200" placeholder="enter your blog title" />
-      </div>
-    <div class="col col-12 col-md-3">
-      <label for="blogger_name">Your username</label>
-      <input type="text" id="blogger_name" name="auth" [value]="auth.user()?.username ?? ''" disabled />
+<!-- Studio top bar: where you are, what's saved, and what you can do next -->
+<div class="studio-bar glass">
+  <div class="studio-bar__inner container-x">
+    <a routerLink="/myacc" class="icon-btn" aria-label="Back to your dashboard" title="Your stories"><span class="ms">arrow_back</span></a>
+    <div class="studio-bar__state">
+      @switch (status()) {
+        @case ('new') { <span class="status-chip">New story</span> }
+        @case ('draft') { <span class="status-chip status-chip--draft">Draft</span> }
+        @case ('scheduled') { <span class="status-chip status-chip--scheduled"><span class="ms">schedule</span>Scheduled · {{ formatWhen(saved()!.publishAt!) }}</span> }
+        @default { <span class="status-chip status-chip--live"><span class="dot dot--live"></span>Published</span> }
+      }
+      <span class="studio-bar__save muted" aria-live="polite">
+        @if (busy() === 'saving') { <span class="ms spin">progress_activity</span>Saving… }
+        @else if (unsaved()) {
+          @if (autosaves()) { <span class="ms">edit_note</span>Editing… } @else { <span class="ms">edit</span>Unsaved changes }
+        }
+        @else if (savedAt(); as s) { <span class="ms">cloud_done</span>{{ saved() ? 'Saved' : 'Saved in this browser' }} {{ s.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }} }
+      </span>
+      <span class="studio-bar__count muted mono">{{ words() }} words · {{ minutes() }} min</span>
     </div>
-    <div class="col col-12 col-md-3">
-      <label for="cate">Categories</label>
-      <input type="text" id="cate" name="cate" [(ngModel)]="blog.cate" required maxlength="100" placeholder="e.g. Travel | Vacation" />
+    <div class="studio-bar__actions">
+      <button type="button" class="btn-ghost btn-x--sm" [class.is-on]="preview()" (click)="preview.set(!preview())" [attr.aria-pressed]="preview()">
+        <span class="ms">{{ preview() ? 'edit' : 'visibility' }}</span>{{ preview() ? 'Edit' : 'Preview' }}
+      </button>
+      @if (autosaves()) {
+        <button type="button" id="save-draft" class="btn-ghost btn-x--sm" (click)="saveDraft()" [disabled]="!!busy() || !hasContent()" title="Save draft (Ctrl+S)">
+          <span class="ms">save</span>Save draft
+        </button>
+        <button type="button" class="btn-ghost btn-x--sm" (click)="openSchedule()" [disabled]="!ready() || !!busy()"><span class="ms">schedule_send</span>Schedule</button>
+        <button type="button" id="post" class="btn-x btn-x--sm" (click)="publish()" [disabled]="!ready() || !!busy()">
+          <span class="ms">rocket_launch</span>{{ busy() === 'publishing' ? 'Publishing…' : 'Publish' }}
+        </button>
+      } @else {
+        <button type="button" class="btn-ghost btn-x--sm" (click)="unpublish()" [disabled]="!!busy()"><span class="ms">unpublished</span>Move to drafts</button>
+        @if (status() === 'scheduled') {
+          <button type="button" class="btn-ghost btn-x--sm" (click)="openSchedule()" [disabled]="!!busy()"><span class="ms">edit_calendar</span>Reschedule</button>
+        }
+        <button type="button" id="update" class="btn-x btn-x--sm" (click)="update()" [disabled]="!ready() || !dirty() || !!busy()" title="Update (Ctrl+S)">
+          <span class="ms">done_all</span>{{ busy() === 'saving' ? 'Saving…' : 'Update' }}
+        </button>
+      }
     </div>
-    <div class="col col-12 col-md-3">
-      <label for="date">Date to show</label>
-       <input type="date" id="date" name="date" [(ngModel)]="blog.date" required />
-    </div>
-    <div class="col col-12 col-md-3">
-      <label for="img_name">Image name from our <a routerLink="/gallery">Image Pool</a></label>
-      <input type="text" id="img_name" name="img_name" [(ngModel)]="blog.img" required placeholder="e.g. img5" />
-    </div>
-    <div class="col col-12">
+  </div>
+</div>
 
-      <label for="blog_p1">Blog (Paragraph one)</label>
-      <textarea placeholder="enter paragraph" [(ngModel)]="blog.blogp1" required id="blog_p1" name="blog_p1"></textarea>
-      <label for="blog_p2">Blog (Paragraph two)</label>
-      <textarea placeholder="enter paragraph" id="blog_p2" [(ngModel)]="blog.blogp2" required name="blog_p2"></textarea><br><br>
-      @if (error()) { <p class="text-danger">{{ error() }}</p> }
-      <input type="submit" id="post" name="post" [value]="loading() ? 'POSTING...' : 'POST YOUR BLOG'" [disabled]="f.invalid || loading()"/>
+@if (scheduleOpen()) {
+  <div class="palette-backdrop" (click)="scheduleOpen.set(false)"></div>
+  <form class="confirm glass schedule-dialog" role="dialog" aria-modal="true" aria-labelledby="schedule-title" (submit)="$event.preventDefault(); publish(true)">
+    <span class="confirm__icon"><span class="ms">schedule_send</span></span>
+    <h2 id="schedule-title">Schedule your story</h2>
+    <p class="muted">It stays private until then, and goes live on its own. You can still edit or reschedule it.</p>
+    <label class="field">
+      <span class="field__label">Publish on</span>
+      <input id="schedule-at" type="datetime-local" class="input-x" [min]="minSchedule()" [max]="maxSchedule" [value]="scheduleAt()"
+             (input)="scheduleAt.set($any($event.target).value)" required>
+    </label>
+    @if (error()) { <p class="form-msg form-msg--error" role="alert">{{ error() }}</p> }
+    <div class="confirm__actions">
+      <button type="button" class="btn-ghost" (click)="scheduleOpen.set(false)">Cancel</button>
+      <button type="submit" id="schedule-confirm" class="btn-x" [disabled]="!!busy()">{{ status() === 'scheduled' ? 'Reschedule' : 'Schedule' }}</button>
     </div>
-    </form>
+  </form>
+}
+
+@if (pickerOpen()) {
+  <div class="palette-backdrop" (click)="pickerOpen.set(false)"></div>
+  <div class="cover-picker glass" role="dialog" aria-modal="true" aria-labelledby="cover-title">
+    <header class="cover-picker__head">
+      <h2 id="cover-title">Choose a cover</h2>
+      <a routerLink="/gallery" class="link-arrow">Browse the Image Pool <span class="ms">arrow_forward</span></a>
+      <button type="button" class="icon-btn" aria-label="Close" (click)="pickerOpen.set(false)"><span class="ms">close</span></button>
+    </header>
+    <div class="image-picker image-picker--large" role="radiogroup" aria-label="Cover image">
+      @for (name of images(); track name) {
+        <button type="button" role="radio" class="image-picker__item" [class.is-selected]="img() === name"
+                [attr.aria-checked]="img() === name" [attr.aria-label]="name" (click)="chooseCover(name)">
+          <img [src]="imageUrl(name)" alt="" loading="lazy">
+          <span class="ms">check_circle</span>
+        </button>
+      }
+    </div>
   </div>
-        </div>
+}
+
+<section class="container-x studio">
+  @if (loadingStory()) {
+    <div class="skeleton skeleton--reader"></div>
+  } @else if (preview()) {
+    <!-- Preview: the story as readers will see it -->
+    <article class="studio__canvas studio__preview-read">
+      <figure class="studio-cover">
+        <img [src]="imageUrl(previewPost().img, 'lg')" alt="">
+      </figure>
+      <div class="chips-row">@for (c of topics(); track c) { <span class="chip">{{ c }}</span> }</div>
+      <h1 class="display display--md">{{ previewPost().title }}</h1>
+      <p class="muted">By {{ author() }} · {{ minutes() }} min read</p>
+      <div class="prose">
+        <p class="prose__lead">{{ previewPost().blogp1 }}</p>
+        <div class="prose__body" [innerHTML]="blogp2()"></div>
+      </div>
+    </article>
+  } @else {
+    <div class="studio__canvas">
+      <!-- Cover -->
+      @if (img(); as cover) {
+        <figure class="studio-cover">
+          <img [src]="imageUrl(cover, 'lg')" [alt]="'Cover: ' + cover">
+          <div class="studio-cover__actions">
+            <button type="button" class="btn-ghost btn-x--sm glass" (click)="pickerOpen.set(true)"><span class="ms">imagesmode</span>Change cover</button>
+            <button type="button" class="icon-btn glass" aria-label="Remove cover" (click)="img.set('')"><span class="ms">close</span></button>
+          </div>
+        </figure>
+      } @else {
+        <button type="button" id="add-cover" class="studio-cover studio-cover--empty" (click)="pickerOpen.set(true)">
+          <span class="ms">add_photo_alternate</span>
+          <strong>Add a cover</strong>
+          <span class="muted">Pick a photo from the Image Pool</span>
+        </button>
+      }
+
+      <textarea id="title" class="studio__title" placeholder="Your headline…" maxlength="200" rows="1" aria-label="Title"
+                [value]="title()" (input)="title.set($any($event.target).value)"></textarea>
+      <p class="studio__byline muted">
+        <span class="ms">person</span>By {{ author() }}
+        @if (saved()?.date && status() !== 'draft') { · {{ saved()!.date }} }
+      </p>
+
+      <label class="studio__lede">
+        <span class="visually-hidden">Opening paragraph</span>
+        <textarea id="blog_p1" class="studio__lede-input" rows="3" maxlength="2000" placeholder="Write an opening that hooks readers. It also appears on story cards."
+                  [value]="blogp1()" (input)="blogp1.set($any($event.target).value)"></textarea>
+      </label>
+
+      <app-rich-editor [(html)]="blogp2" placeholder="Tell your story… Use the toolbar or type ## for a heading." label="Story" />
+
+      @if (error() && !scheduleOpen()) { <p class="form-msg form-msg--error" role="alert">{{ error() }}</p> }
+
+      <div class="studio__danger">
+        <button type="button" class="btn-ghost btn-x--sm" (click)="discard()" [disabled]="!!busy() || (!saved() && !hasContent())">
+          <span class="ms">delete</span>{{ saved() ? 'Delete story' : 'Clear draft' }}
+        </button>
       </div>
     </div>
-  </div>
+  }
+
+  <aside class="studio__side">
+    <div class="glass studio__panel">
+      <p class="eyebrow">Topics</p>
+      <div class="chips-row chips-row--tight">
+        @for (t of topics(); track t) {
+          <button type="button" class="chip chip--toggle is-on" (click)="toggleTopic(t)" [attr.aria-label]="'Remove topic ' + t">{{ t }}<span class="ms">close</span></button>
+        }
+      </div>
+      <form class="topic-add" (submit)="$event.preventDefault(); addTopic()">
+        <input id="topic" class="input-x" placeholder="Add a topic and press Enter" maxlength="40" aria-label="Add a topic"
+               [value]="topicInput()" (input)="topicInput.set($any($event.target).value)">
+      </form>
+      @if (suggestions().length) {
+        <p class="muted small">Popular</p>
+        <div class="chips-row chips-row--tight">
+          @for (s of suggestions(); track s) {
+            @if (!topics().includes(s)) { <button type="button" class="chip chip--toggle" (click)="toggleTopic(s)">+ {{ s }}</button> }
+          }
+        </div>
+      }
+    </div>
+
+    <div class="glass studio__panel">
+      <p class="eyebrow">Ready to publish?</p>
+      <ul class="checklist">
+        @for (c of checks(); track c.label) { <li [class.done]="c.done">{{ c.label }}</li> }
+      </ul>
+    </div>
+
+    <div class="studio__panel">
+      <p class="eyebrow"><span class="dot dot--live"></span>Card preview</p>
+      <app-post-card [post]="previewPost()" [link]="null" />
+    </div>
+  </aside>
+</section>

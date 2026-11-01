@@ -10,8 +10,10 @@
   "scripts": {
     "start": "node --env-file-if-exists=.env src/index.js",
     "dev": "node --env-file-if-exists=.env --watch src/index.js",
+    "db": "node --env-file-if-exists=.env src/local-db.js",
     "dev:memory": "node --env-file-if-exists=.env src/dev-memory.js",
-    "test": "node --test --test-concurrency=1 test/"
+    "test": "node --test --test-concurrency=1 test/",
+    "test:coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=\"src/**\" --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 test/"
   },
   "author": "Manjunatha M S",
   "license": "ISC",
@@ -22,7 +24,8 @@
     "express-session": "^1.19.0",
     "helmet": "^8.3.0",
     "mongoose": "^9.11.4",
-    "nodemailer": "^10.3.1"
+    "nodemailer": "^10.3.1",
+    "sanitize-html": "^2.18.1"
   },
   "devDependencies": {
     "mongodb-memory-server": "^11.3.0",

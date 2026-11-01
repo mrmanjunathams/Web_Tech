@@ -1,0 +1,108 @@
+# Builds and tests the Bloggerbytes API (backend/) on every push.
+# The packaged API is uploaded as an artifact you can deploy with `npm start`.
+name: API
+
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - 'frontend/public/picyourpic/**' # the Image Pool the API validates blog images against
+      - '.github/workflows/api.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+      - 'frontend/public/picyourpic/**'
+      - '.github/workflows/api.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: api-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      # mongodb-memory-server downloads a MongoDB binary for the tests; keep it between runs.
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: mongodb-binaries-${{ runner.os }}-${{ hashFiles('backend/package-lock.json') }}
+
+      - run: npm ci
+
+      - name: Tests with 100% coverage (lines, branches, functions)
+        run: npm run test:coverage
+
+      - name: Smoke test (boot the server and hit the API)
+        env:
+          PORT: '3000'
+        run: |
+          npm run dev:memory > server.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3000/health && break; sleep 1; done
+          curl -sf http://localhost:3000/health | grep -q '"ok"'
+          curl -sf http://localhost:3000/blogs | grep -q '"featured"'
+          curl -sf http://localhost:3000/stats | grep -q '"blogs"'
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/myacc)" = 401
+
+      - name: Server log
+        if: failure()
+        run: cat server.log || true
+
+  build:
+    name: Package
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install production dependencies
+        run: npm ci --omit=dev
+
+      - name: Check the API loads with production dependencies only
+        run: node -e "require('./src/app').createApp({ sessionSecret: 'ci' }); console.log('API module OK')"
+
+      # Layout matches the repo so the API finds the Image Pool at ../frontend/public/picyourpic.
+      - name: Bundle
+        working-directory: .
+        run: |
+          mkdir -p dist/bloggerbytes-api
+          cp -r backend dist/bloggerbytes-api/backend
+          rm -rf dist/bloggerbytes-api/backend/test dist/bloggerbytes-api/backend/.env
+          mkdir -p dist/bloggerbytes-api/frontend/public
+          cp -r frontend/public/picyourpic dist/bloggerbytes-api/frontend/public/picyourpic
+          tar -czf dist/bloggerbytes-api.tar.gz -C dist bloggerbytes-api
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bloggerbytes-api-${{ github.sha }}
+          path: dist/bloggerbytes-api.tar.gz
+          retention-days: 14

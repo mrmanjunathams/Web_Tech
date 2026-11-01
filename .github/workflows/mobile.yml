@@ -1,0 +1,131 @@
+# Checks the Flutter app (mobile/) on every push: static analysis, widget tests,
+# a contract test against the real API, then Android and web builds.
+name: Mobile
+
+on:
+  push:
+    paths:
+      - 'mobile/**'
+      - 'backend/**' # API changes can break the app
+      - '.github/workflows/mobile.yml'
+  pull_request:
+    paths:
+      - 'mobile/**'
+      - 'backend/**'
+      - '.github/workflows/mobile.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: mobile-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: '3.47.8'
+
+jobs:
+  test:
+    name: Analyze and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: mongodb-binaries-${{ runner.os }}-${{ hashFiles('backend/package-lock.json') }}
+
+      - run: flutter pub get
+
+      - name: Image Pool is in sync with the web app
+        run: |
+          diff -q assets/picyourpic/manifest.json ../frontend/public/picyourpic/manifest.json
+          diff -rq assets/picyourpic/opt ../frontend/public/picyourpic/opt
+
+      - run: dart format --output=none --set-exit-if-changed -l 120 lib test
+      - run: flutter analyze
+      - name: Unit and widget tests
+        run: flutter test --coverage --exclude-tags backend
+
+      - name: 100% line coverage of lib/
+        run: dart run tool/check_coverage.dart
+
+      - name: Start the API (in-memory database)
+        working-directory: backend
+        env:
+          PORT: '3100'
+        run: |
+          npm ci
+          npm run dev:memory > server.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3100/health && break; sleep 1; done
+
+      - name: Contract test against the real API
+        env:
+          BACKEND_URL: http://localhost:3100
+        run: flutter test --tags backend
+
+      - name: Server log
+        if: failure()
+        run: cat ../backend/server.log || true
+
+  build:
+    name: Build ${{ matrix.target }}
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [apk, web]
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v5
+
+      - if: matrix.target == 'apk'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+
+      # Point builds at your deployed API with a repository variable, e.g. API_BASE_URL=https://api.example.com
+      - name: Build
+        env:
+          API_BASE_URL: ${{ vars.API_BASE_URL }}
+        run: |
+          DEFINES=""
+          if [ -n "$API_BASE_URL" ]; then DEFINES="--dart-define=API_BASE_URL=$API_BASE_URL"; fi
+          flutter build ${{ matrix.target }} --release $DEFINES
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bloggerbytes-${{ matrix.target }}-${{ github.sha }}
+          path: ${{ matrix.target == 'apk' && 'mobile/build/app/outputs/flutter-apk/app-release.apk' || 'mobile/build/web' }}
+          retention-days: 14

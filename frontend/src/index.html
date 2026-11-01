@@ -1,15 +1,28 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <title>Bloggerbytes</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bloggerbytes — publish your passions, your way. Write beautiful stories and share them with the world.">
+  <meta name="theme-color" content="#07070d">
   <link rel="icon" type="image/png" href="images/logo.png">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Ubuntu|Anton|Fjalla+One|Mukta+Mahee|Kumar+One+Outline|Lobster|Varela+Round|Allerta+Stencil|Josefin+Sans:300,400,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Icon font subset to the icons in use (~25 KB instead of ~1.2 MB); scripts/check-icons.mjs keeps it in sync. -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,450,0..1,0&icon_names=add_photo_alternate,alternate_email,arrow_back,arrow_forward,article,auto_stories,badge,bolt,check_circle,chevron_left,chevron_right,close,close_fullscreen,cloud_done,code,contrast,dark_mode,data_object,delete,delete_forever,delete_sweep,done_all,draw,edit,edit_calendar,edit_note,edit_square,emoji_events,error,explore,favorite,format_bold,format_clear,format_h2,format_h3,format_italic,format_list_bulleted,format_list_numbered,format_quote,format_underlined,help,history,home,horizontal_rule,imagesmode,info,ios_share,light_mode,link,local_fire_department,lock,login,logout,mail,menu,military_tech,notes,open_in_full,person,person_add,photo_library,progress_activity,public,redo,rocket_launch,save,schedule,schedule_send,search,search_off,sentiment_dissatisfied,sort,space_dashboard,strikethrough_s,travel_explore,undo,unpublished,visibility,visibility_off,workspace_premium&display=block" rel="stylesheet">
+  <script>
+    // Apply the saved/OS theme before first paint (see core/theme.ts).
+    try {
+      var t = localStorage.getItem('bb-theme');
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
 </head>
-<body style="font-family: 'Ubuntu', sans-serif;">
+<body>
   <app-root></app-root>
 </body>
 </html>

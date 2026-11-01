@@ -3,14 +3,21 @@
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { start } = require('./index');
 
-(async () => {
-  const mongod = await MongoMemoryServer.create();
-  console.log('Started in-memory MongoDB (data is not persisted)');
-  await start(mongod.getUri('bloggerbytes'));
-  const stop = () => mongod.stop().finally(() => process.exit(0));
-  process.on('SIGINT', stop);
-  process.on('SIGTERM', stop);
-})().catch((err) => {
-  console.error('Failed to start:', err);
-  process.exit(1);
-});
+/** @param {number} [port] defaults to PORT (3000) */
+async function main(port) {
+  try {
+    const mongod = await MongoMemoryServer.create();
+    console.log('Started in-memory MongoDB (data is not persisted)');
+    // Stops the database only after the server has disconnected from it.
+    const server = await start(mongod.getUri('bloggerbytes'), port, () => mongod.stop());
+    return { mongod, server };
+  } catch (err) {
+    console.error('Failed to start:', err);
+    process.exit(1);
+  }
+}
+
+/* node:coverage ignore next */
+if (require.main === module) main();
+
+module.exports = { main };

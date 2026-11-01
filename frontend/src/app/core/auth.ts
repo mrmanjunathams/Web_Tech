@@ -22,7 +22,7 @@ export class Auth {
     }
   }
 
-  async signup(data: { username: string; email: string; password: string }): Promise<void> {
+  async signup(data: { username: string; name: string; email: string; password: string }): Promise<void> {
     await firstValueFrom(this.http.post('/adduser', data));
     await this.load();
   }
@@ -32,11 +32,18 @@ export class Auth {
     await this.load();
   }
 
+  /** Changes the display name; the updated account replaces `user`. */
+  async rename(name: string): Promise<void> {
+    this.user.set(await firstValueFrom(this.http.patch<Account>('/myacc', { name })));
+  }
+
+  /** Ends the session. Always signs out locally, even if the server can't be reached. */
   async logout(): Promise<void> {
     try {
       await firstValueFrom(this.http.post('/logout', {}));
-    } finally {
-      this.user.set(null);
+    } catch {
+      // The cookie expires on its own; nothing else to do.
     }
+    this.user.set(null);
   }
 }

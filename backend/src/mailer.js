@@ -25,14 +25,14 @@ async function sendWelcomeEmail(user) {
       from: process.env.MAIL_FROM || process.env.SMTP_USER,
       to: user.email,
       subject: 'Welcome to Bloggerbytes',
-      text: `Hi ${user.username}, welcome to Bloggerbytes. We are happy to see you here.`,
+      text: `Hi ${user.name || user.username}, welcome to Bloggerbytes. We are happy to see you here.`,
       html:
         '<div style="background:#99ebff;padding:24px;font-family:sans-serif">' +
         '<div style="max-width:560px;margin:auto;background:#fff;padding:24px;text-align:center">' +
         '<img src="https://image.ibb.co/n53MH0/logoalt.png" alt="Bloggerbytes" width="50%">' +
         '<h2>Publish your passions, your way</h2>' +
         '<p>Create a unique and beautiful blog. It\'s easy and free.</p>' +
-        `<h3>Welcome to Bloggerbytes, ${escapeHtml(user.username)}.<br>We are happy to see you here.</h3>` +
+        `<h3>Welcome to Bloggerbytes, ${escapeHtml(user.name || user.username)}.<br>We are happy to see you here.</h3>` +
         '</div></div>',
     });
     console.log('Welcome email sent:', info.response);
